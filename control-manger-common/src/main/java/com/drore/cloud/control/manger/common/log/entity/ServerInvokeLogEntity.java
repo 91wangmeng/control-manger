@@ -17,6 +17,8 @@ import lombok.ToString;
 public class ServerInvokeLogEntity extends BaseEntity {
     @JSONField(name = "server_description")
     private String serverDescription;
+    @JSONField(name = "server_api")
+    private String serverApi;
     @JSONField(name = "client_ip")
     private String clientIp;
     @JSONField(name = "invoker")
@@ -27,6 +29,8 @@ public class ServerInvokeLogEntity extends BaseEntity {
     private boolean isSuccess;
     @JSONField(name = "fail_cause")
     private String failCause;
+    @JSONField(name = "response")
+    private String response;
     @JSONField(name = "server_type")
     private int serverType;
     @JSONField(name = "consume_time")

@@ -1,5 +1,6 @@
 package com.drore.cloud.control.manger.common.log.aspect;
 
+import com.alibaba.fastjson.JSON;
 import com.drore.cloud.control.manger.common.log.annotations.ServerInvokeLog;
 import com.drore.cloud.control.manger.common.log.entity.HttpRequestLogEntity;
 import com.drore.cloud.control.manger.common.log.entity.ServerInvokeLogEntity;
@@ -111,6 +112,7 @@ public class ServerInvokeAspect {
         }
         long endTs = System.currentTimeMillis();
         long consumeTime = endTs - startTs;
+        logEntity.setResponse(JSON.toJSONString(result));
         logEntity.setConsumeTime(consumeTime);
         LinkedBlockingQueueUtils.offerServerInvoke(logEntity);
         return result;
@@ -136,6 +138,7 @@ public class ServerInvokeAspect {
         ServerInvokeLogEntity entity = new ServerInvokeLogEntity();
         entity.setClientIp(remoteAddr);
         entity.setInvokeTime(System.currentTimeMillis() / 1000);
+        entity.setServerApi(request.getRequestURI());
         entity.setSuccess(true);
         entity.setServerDescription(annotation.serverDescription());
         entity.setInvoker(annotation.invoker().getValue());

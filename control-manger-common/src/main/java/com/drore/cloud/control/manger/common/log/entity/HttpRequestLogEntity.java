@@ -2,6 +2,7 @@ package com.drore.cloud.control.manger.common.log.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
  * @author wmm
  */
 @Data
+@ToString
 public class HttpRequestLogEntity extends BaseEntity {
     private static Logger LOGGER = LoggerFactory.getLogger(HttpRequestLogEntity.class);
     @JSONField(name = "parent_id")

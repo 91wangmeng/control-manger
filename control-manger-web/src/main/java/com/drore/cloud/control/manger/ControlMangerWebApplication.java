@@ -3,6 +3,7 @@ package com.drore.cloud.control.manger;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,6 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import java.util.Date;
 
@@ -25,6 +27,8 @@ import java.util.Date;
 @EnableDiscoveryClient
 @EnableEurekaServer
 @EnableConfigServer
+@EnableRabbit
+@EnableMongoRepositories
 public class ControlMangerWebApplication {
     private static Logger LOGGER = LoggerFactory.getLogger(ControlMangerWebApplication.class);
 

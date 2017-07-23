@@ -32,10 +32,7 @@ import java.net.MalformedURLException;
 import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.nio.charset.UnsupportedCharsetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 卓锐科技有限公司
@@ -314,6 +311,8 @@ public class HttpRequestUtils {
                 }
                 String contentType = request.getFirstHeader("Content-Type").getValue();
                 if (!MediaType.MULTIPART_FORM_DATA_VALUE.equals(contentType)) {
+                    UUID uuid = UUID.randomUUID();
+                    httpRequestLogEntity.setId(uuid.toString());
                     httpRequestLogEntity.setParentId(TransmittableThreadLocalUtils.get());
                     httpRequestLogEntity.setConsumeTime(consumeTime);
                     httpRequestLogEntity.setParam(params);

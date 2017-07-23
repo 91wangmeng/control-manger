@@ -23,5 +23,10 @@ public interface RabbitBuilder {
      */
     void sendServerInvokeLog(Object object);
 
+    /**
+     * Send http request log.
+     *
+     * @param object the object
+     */
     void sendHttpRequestLog(Object object);
 }

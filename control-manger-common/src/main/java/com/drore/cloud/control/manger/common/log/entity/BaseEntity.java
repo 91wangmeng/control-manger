@@ -1,8 +1,9 @@
 package com.drore.cloud.control.manger.common.log.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 
@@ -15,7 +16,10 @@ import java.io.Serializable;
  * @author wmm
  */
 @Data
-public class BaseEntity implements Serializable{
+@ToString
+public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 7764802712795360005L;
+    @JSONField(name = "id")
+    @Id
     private String id;
 }
