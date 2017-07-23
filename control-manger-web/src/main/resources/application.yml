@@ -1,0 +1,14 @@
+spring:
+  redis:
+    pool:
+      max-idle: 10
+      min-idle: 0
+      max-wait: 5000
+      max-active: 8
+    host: ${control-manger-ip}
+  rabbitmq:
+    host: ${control-manger-ip}
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: control-manger

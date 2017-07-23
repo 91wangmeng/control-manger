@@ -1,0 +1,40 @@
+control-manger-ip: 192.168.199.131
+##  服务端口
+server:
+  port: 8081
+##  服务名称
+spring:
+  application:
+    name: control-manger
+  cloud:
+    config:
+      server:
+        prefix: /control_config/
+        git:
+          uri: https://git.oschina.net/92wmm/control-manger-config.git
+          username: 92wmm
+          password: 6492178
+          search-paths: config/,config/partition
+  data:
+    mongodb:
+      port: 27017
+      host: ${control-manger-ip}
+      database: ${spring.application.name}
+##  eureka配置
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+       defaultZone:   http://localhost:${server.port}/eureka/
+##  日志
+logging:
+  level:
+    root: info
+    com:
+      netflix:
+        eureka: 'off'
+        discovery:  'off'
+management:
+  security:
+    enabled: false
