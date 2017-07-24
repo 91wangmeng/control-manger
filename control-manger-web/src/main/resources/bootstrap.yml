@@ -1,7 +1,7 @@
-control-manger-ip: 172.16.11.35
+control-manger-ip: 192.168.199.131
 ##  服务端口
 server:
-  port: 8083
+  port: 8081
 ##  服务名称
 spring:
   application:
@@ -27,8 +27,6 @@ eureka:
     fetch-registry: false
     service-url:
        defaultZone:   http://localhost:${server.port}/eureka/
-  instance:
-    prefer-ip-address: true
 ##  日志
 logging:
   level:
