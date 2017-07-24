@@ -19,6 +19,40 @@
 ### 后台页面展示(control-manger-message)
 > 本模块主要做用户提供页面交互展示功能。
 
+## 安装流程
+### 安装Docker
+查看内核版本
+>uname -r
+
+更新yum包
+>yum update
+
+
+添加yum仓库
+>sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
+
+> [dockerrepo]<br/>
+name=Docker Repository <br/>
+baseurl=https://yum.dockerproject.org/repo/main/centos/7/<br/>
+enabled=1<br/>
+gpgcheck=1<br/>
+gpgkey=https://yum.dockerproject.org/gpg<br/>
+> EOF
+
+安装Docker
+>yum install docker-engine
+
+启动Docker
+>service docker start
+
+使用Docker国内镜像
+> curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://fe8a7d6e.m.daocloud.io
+
+构建docker镜像
+> 通过maven插件build构建镜像,注意设置好DOCKER_HOST环境变量.
+
+
+
 ## 踩到的坑
 > * 由于common依赖没控制好,导致config client引入common时同时引入了config server的依赖,导致clien的配置无法生效
-> * 
+> * docker中运行eurekadocker run -p 8081:8081 -i --net=host control-manger 加上-i --ner=host 才能在config客户端获取配置服务器的地址时不会获取到容器id

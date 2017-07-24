@@ -3,6 +3,8 @@ package com.drore.cloud.control.manger.log.dao;
 import com.drore.cloud.control.manger.log.domain.HttpRequestLogMongoEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
+
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
  * 说明: <br/>
@@ -11,4 +13,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
 public interface HttpRequestInvokeRepository extends MongoRepository<HttpRequestLogMongoEntity, String> {
+    List<HttpRequestLogMongoEntity> findHttpRequestLogMongoEntitiesByParentId(String parentId);
 }
