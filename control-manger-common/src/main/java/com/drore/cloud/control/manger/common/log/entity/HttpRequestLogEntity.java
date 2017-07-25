@@ -1,10 +1,9 @@
 package com.drore.cloud.control.manger.common.log.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.drore.cloud.control.manger.common.base.domain.BaseEntity;
 import lombok.Data;
 import lombok.ToString;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 卓锐科技有限公司
@@ -17,21 +16,44 @@ import org.slf4j.LoggerFactory;
 @Data
 @ToString
 public class HttpRequestLogEntity extends BaseEntity {
-    private static Logger LOGGER = LoggerFactory.getLogger(HttpRequestLogEntity.class);
+    /**
+     * 该请求所属服务id
+     */
     @JSONField(name = "parent_id")
     private String parentId;
+    /**
+     * 请求是否成功
+     */
     @JSONField(name = "is_success")
     private boolean isSuccess;
+    /**
+     * 请求地址
+     */
     @JSONField(name = "url")
     private String url;
+    /**
+     * 请求参数
+     */
     @JSONField(name = "param")
     private Object param;
-    @JSONField(name = "consumeTime")
+    /**
+     * 消耗时间
+     */
+    @JSONField(name = "consume_time")
     private long consumeTime;
+    /**
+     * 响应结果
+     */
     @JSONField(name = "response")
     private Object response;
+    /**
+     * 请求描述
+     */
     @JSONField(name = "describe")
     private String describe;
+    /**
+     * 失败原因
+     */
     @JSONField(name = "fail_cause")
     private String failCause;
 }

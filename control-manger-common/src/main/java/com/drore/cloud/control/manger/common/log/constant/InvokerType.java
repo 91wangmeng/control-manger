@@ -1,4 +1,4 @@
-package com.drore.cloud.control.manger.common.log.enmu;
+package com.drore.cloud.control.manger.common.log.constant;
 
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
@@ -13,21 +13,21 @@ public enum  InvokerType {
      */
     CONTROL_APP_INVOKER_TYPE(0),
     /**
-     * Control web invokey type invoker type.//管控web前端
+     * Control web INVOKER type invoker type.//管控web前端
      */
-    CONTROL_WEB_INVOKEY_TYPE(1),
+    CONTROL_WEB_INVOKER_TYPE(1),
     /**
      * Tdp invoker type invoker type.
      */
     TDP_INVOKER_TYPE(2),
     /**
-     * Uc invokey type invoker type.
+     * Uc invoker type invoker type.
      */
-    UC_INVOKEY_TYPE(3),
+    UC_INVOKER_TYPE(3),
     /**
-     * Gis invokey type invoker type.
+     * Gis invoker type invoker type.
      */
-    GIS_INVOKEY_TYPE(4);
+    GIS_INVOKER_TYPE(4);
 
     private static final long serialVersionUID = -1211016710017589286L;
     private final int value;

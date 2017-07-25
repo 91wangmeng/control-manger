@@ -1,4 +1,4 @@
-package com.drore.cloud.control.manger.common.log.entity;
+package com.drore.cloud.control.manger.common.base.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
@@ -22,4 +22,7 @@ public class BaseEntity implements Serializable {
     @JSONField(name = "id")
     @Id
     private String id;
+    @JSONField(name = "create_time")
+    private long createTime;
+
 }

@@ -20,7 +20,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * 卓锐科技有限公司
@@ -133,7 +135,10 @@ public class ServerInvokeAspect {
         //获取当前调用的方法名
         String methodName = joinPoint.getSignature().getName();
         //遍历获取当前调用的方法
-        Method targetMethod = Arrays.stream(methods).filter(method -> methodName.equals(method.getName())).findFirst().get();
+        Method targetMethod = Arrays.stream(methods)
+                .filter(method -> methodName.equals(method.getName()))
+                .findFirst()
+                .get();
         ServerInvokeLog annotation = targetMethod.getAnnotation(ServerInvokeLog.class);
         ServerInvokeLogEntity entity = new ServerInvokeLogEntity();
         entity.setClientIp(remoteAddr);
@@ -141,7 +146,11 @@ public class ServerInvokeAspect {
         entity.setServerApi(request.getRequestURI());
         entity.setSuccess(true);
         entity.setServerDescription(annotation.serverDescription());
-        entity.setInvoker(annotation.invoker().getValue());
+        List<Integer> collect = Arrays.stream(annotation.invoker())
+                .map(invokerType -> invokerType.getValue())
+                .collect(Collectors.toList());
+        Integer[] invokers = collect.toArray(new Integer[collect.size()]);
+        entity.setInvoker(invokers);
         entity.setServerType(annotation.logType().getValue());
         return entity;
     }

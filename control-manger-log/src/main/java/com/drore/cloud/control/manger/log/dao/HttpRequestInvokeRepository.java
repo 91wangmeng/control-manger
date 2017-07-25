@@ -1,6 +1,8 @@
 package com.drore.cloud.control.manger.log.dao;
 
 import com.drore.cloud.control.manger.log.domain.HttpRequestLogMongoEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
@@ -13,5 +15,5 @@ import java.util.List;
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
 public interface HttpRequestInvokeRepository extends MongoRepository<HttpRequestLogMongoEntity, String> {
-    List<HttpRequestLogMongoEntity> findHttpRequestLogMongoEntitiesByParentId(String parentId);
+    Page<HttpRequestLogMongoEntity> findHttpRequestLogMongoEntitiesByParentId(String parentId, Pageable pageable);
 }

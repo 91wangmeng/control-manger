@@ -1,4 +1,4 @@
-package com.drore.cloud.control.manger.common.base.domain;
+package com.drore.cloud.control.manger.common.base.domain.qo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

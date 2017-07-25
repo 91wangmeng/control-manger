@@ -1,0 +1,38 @@
+package com.drore.cloud.control.manger.task.domain;
+
+import com.drore.cloud.control.manger.common.base.domain.BaseEntity;
+import com.drore.cloud.control.manger.task.constant.TaskConstant;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+/**
+ * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
+ * 说明: <br/>
+ * 项目名称: control-manger <br/>
+ * 创建日期: 2017年07月25日 14:48 <br/>
+ * 作者: <a href="6492178@gmail.com">汪萌萌</a>
+ */
+@Data
+@ToString
+@NoArgsConstructor
+@Document(collection = TaskConstant.SCHEDULE_TASK_LOG_MONGO)
+public class ScheduleTaskLogEntity extends BaseEntity {
+    /**
+     * 所属任务id
+     */
+    private String taskId;
+    /**
+     * 消耗时间
+     */
+    private long consumeTime;
+    /**
+     * 是否成功
+     */
+    private boolean isSuccess;
+    /**
+     * 失败原因
+     */
+    private String failCause;
+}

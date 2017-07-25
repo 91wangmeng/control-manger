@@ -33,7 +33,7 @@ public class LogMangerServiceImpl implements LogMangerService {
     }
 
     @Override
-    public List<HttpRequestLogMongoEntity> getList(String parentId) {
-        return httpRequestInvokeRepository.findHttpRequestLogMongoEntitiesByParentId(parentId);
+    public Page<HttpRequestLogMongoEntity> getList(String parentId,Pageable pageable) {
+        return httpRequestInvokeRepository.findHttpRequestLogMongoEntitiesByParentId(parentId,pageable);
     }
 }

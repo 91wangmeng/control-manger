@@ -1,4 +1,4 @@
-package com.drore.cloud.control.manger.common.log.enmu;
+package com.drore.cloud.control.manger.common.log.constant;
 
 import java.io.Serializable;
 

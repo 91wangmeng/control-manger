@@ -12,6 +12,7 @@
         <module>control-manger-cache</module>
         <module>control-manger-log</module>
         <module>control-manger-message</module>
+        <module>control-manger-task</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -59,6 +60,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

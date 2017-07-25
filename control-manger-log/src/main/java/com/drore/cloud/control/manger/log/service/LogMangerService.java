@@ -29,7 +29,7 @@ public interface LogMangerService {
      * @param id the id
      * @return the list
      */
-    List<HttpRequestLogMongoEntity> getList(String id);
+    Page<HttpRequestLogMongoEntity> getList(String id,Pageable pageable);
 
 
 }

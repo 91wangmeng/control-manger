@@ -1,8 +1,8 @@
 package com.drore.cloud.control.manger.common.log.annotations;
 
 
-import com.drore.cloud.control.manger.common.log.enmu.InvokerType;
-import com.drore.cloud.control.manger.common.log.enmu.LogType;
+import com.drore.cloud.control.manger.common.log.constant.InvokerType;
+import com.drore.cloud.control.manger.common.log.constant.LogType;
 
 import java.lang.annotation.*;
 
@@ -31,11 +31,11 @@ public @interface ServerInvokeLog {
      *
      * @return the string
      */
-    InvokerType invoker() default InvokerType.CONTROL_WEB_INVOKEY_TYPE;
+    InvokerType[] invoker() default InvokerType.CONTROL_WEB_INVOKER_TYPE;
 
 
     /**
-     * Log type log type.
+     * Log type log type.//日志类型
      *
      * @return the log type
      */

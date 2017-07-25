@@ -1,4 +1,4 @@
-control-manger-ip: 192.168.199.131
+control-manger-ip: 172.16.11.35
 ##  服务端口
 server:
   port: 8081
