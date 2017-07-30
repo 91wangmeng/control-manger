@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.drore.cloud.control.manger.common.log.entity.HttpRequestLogEntity;
 import com.drore.cloud.control.manger.common.log.utils.LinkedBlockingQueueUtils;
 import com.drore.cloud.control.manger.common.log.utils.TransmittableThreadLocalUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
-import org.apache.http.NoHttpResponseException;
+import org.apache.http.*;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -249,10 +246,11 @@ public class HttpRequestUtils {
         String result = null;
         try {
             LOGGER.debug("get-req:url:{},param:{}", url, JSON.toJSONString(params));
-            URIBuilder ub = new URIBuilder();
-            ub.setPath(url);
-            ArrayList<NameValuePair> pairs = covertMap2NVPS(params);
-            ub.setParameters(pairs);
+            URIBuilder ub = new URIBuilder(url);
+            if (params != null && !params.isEmpty()) {
+                ArrayList<NameValuePair> pairs = covertMap2NVPS(params);
+                ub.setParameters(pairs);
+            }
             HttpGet get = new HttpGet(ub.build());
             if (headers != null) {
                 headers.forEach((key, value) -> get.setHeader(key, value));
@@ -309,7 +307,8 @@ public class HttpRequestUtils {
                     LOGGER.warn("url:{}\nresponse:{}\nconsume:{}", request.getURI(), response, consumeTime);
                     LOGGER.debug("所有存活线程=" + Thread.getAllStackTraces().size());
                 }
-                String contentType = request.getFirstHeader("Content-Type").getValue();
+                Header firstHeader = request.getFirstHeader("Content-Type");
+                String contentType = firstHeader == null ? "" : firstHeader.getValue();
                 if (!MediaType.MULTIPART_FORM_DATA_VALUE.equals(contentType)) {
                     UUID uuid = UUID.randomUUID();
                     httpRequestLogEntity.setId(uuid.toString());
@@ -330,7 +329,7 @@ public class HttpRequestUtils {
 
     private static ArrayList<NameValuePair> covertMap2NVPS(Map<String, Object> params) {
         ArrayList<NameValuePair> pairs = new ArrayList<>();
-        if (pairs != null) {
+        if (params != null && !params.isEmpty()) {
             params.forEach((s, o) -> pairs.add(new BasicNameValuePair(s, JSON.toJSONString(o))));
         }
         return pairs;
@@ -346,7 +345,8 @@ public class HttpRequestUtils {
         HashMap<String, Object> stringObjectHashMap = new HashMap<>();
         stringObjectHashMap.put("a", "a");
         stringObjectHashMap.put("b", "b");
-        HttpRequestUtils.postForm("打开百度", "http://www.baidu.com", stringObjectHashMap);
+        String test = HttpRequestUtils.get("打开百度", "http://www.baidu.com");
+        System.out.println(test);
     }
 
 }

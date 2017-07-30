@@ -16,7 +16,11 @@
 ### 消息模块（control-manger-message）
 > 本模块主要作用于提供管控系统消息服务，以及消息推送记录。
 
-### 后台页面展示(control-manger-message)
+
+### 任务模块（control-manger-task）
+> 本模块主要作用于提供管控系统定时任务注册和管理。
+
+### 后台页面展示(control-manger-web)
 > 本模块主要做用户提供页面交互展示功能。
 
 ## 安装流程

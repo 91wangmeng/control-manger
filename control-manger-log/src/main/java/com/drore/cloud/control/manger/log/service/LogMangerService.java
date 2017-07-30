@@ -5,8 +5,6 @@ import com.drore.cloud.control.manger.log.domain.ServerInvokeLogMongoEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
  * 说明: <br/>
@@ -26,10 +24,11 @@ public interface LogMangerService {
     /**
      * Gets list.
      *
-     * @param id the id
+     * @param id       the id
+     * @param pageable the pageable
      * @return the list
      */
-    Page<HttpRequestLogMongoEntity> getList(String id,Pageable pageable);
+    Page<HttpRequestLogMongoEntity> getList(String id, Pageable pageable);
 
 
 }

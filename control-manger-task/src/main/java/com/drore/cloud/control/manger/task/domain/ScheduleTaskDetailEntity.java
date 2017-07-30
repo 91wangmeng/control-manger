@@ -1,12 +1,16 @@
 package com.drore.cloud.control.manger.task.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.drore.cloud.control.manger.common.base.domain.BaseEntity;
+import com.drore.cloud.control.manger.common.base.utils.DateUtils;
+import com.drore.cloud.control.manger.task.constant.StatusType;
 import com.drore.cloud.control.manger.task.constant.TaskConstant;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,35 +29,41 @@ public class ScheduleTaskDetailEntity extends BaseEntity {
     /**
      * 任务名称
      */
+    @JSONField(name = "task_name")
     private String taskName;
     /**
      * cron表达式
      */
+    @JSONField(name = "corn_express")
+
     private String cornExpress;
     /**
-     * 开始时间
+     * 开始时间 默认当前时间
      */
-    private Date startTime;
+    @JSONField(name = "start_time", format = DateUtils.YMD_DASH_WITH_TIME)
+
+    private Date startTime = Calendar.getInstance().getTime();
     /**
-     * 结束时间
+     * 结束时间 默认到2099年结束
      */
-    private Date endTime;
+    @JSONField(name = "end_time", format = DateUtils.YMD_DASH_WITH_TIME)
+
+    private Date endTime = TaskConstant.DEFAULT_END_TIME;
     /**
      * 触发url
      */
+    @JSONField(name = "trigger_url")
+
     private String triggerUrl;
     /**
      * 触发参数
      */
+    @JSONField(name = "param")
     private Object param;
     /**
      * 任务状态
      */
-    private int status;
-    /**
-     * 调用次数
-     */
-    private int count;
+    private int status = StatusType.RUNNING.getValue();
 
     /**
      * 失败时通知邮箱地址,预留

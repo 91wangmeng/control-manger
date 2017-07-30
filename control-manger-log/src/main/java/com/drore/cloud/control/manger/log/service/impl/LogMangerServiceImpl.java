@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
@@ -33,7 +32,7 @@ public class LogMangerServiceImpl implements LogMangerService {
     }
 
     @Override
-    public Page<HttpRequestLogMongoEntity> getList(String parentId,Pageable pageable) {
-        return httpRequestInvokeRepository.findHttpRequestLogMongoEntitiesByParentId(parentId,pageable);
+    public Page<HttpRequestLogMongoEntity> getList(String parentId, Pageable pageable) {
+        return httpRequestInvokeRepository.findHttpRequestLogMongoEntitiesByParentId(parentId, pageable);
     }
 }

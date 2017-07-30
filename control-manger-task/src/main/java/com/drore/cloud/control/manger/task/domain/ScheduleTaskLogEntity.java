@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
  * 说明: <br/>
@@ -24,6 +26,10 @@ public class ScheduleTaskLogEntity extends BaseEntity {
      */
     private String taskId;
     /**
+     * 执行结果
+     */
+    private String result;
+    /**
      * 消耗时间
      */
     private long consumeTime;
@@ -35,4 +41,24 @@ public class ScheduleTaskLogEntity extends BaseEntity {
      * 失败原因
      */
     private String failCause;
+    /**
+     * cron表达式
+     */
+    private String cornExpress;
+    /**
+     * 开始时间
+     */
+    private Date startTime;
+    /**
+     * 结束时间
+     */
+    private Date endTime;
+    /**
+     * 触发url
+     */
+    private String triggerUrl;
+    /**
+     * 触发参数
+     */
+    private Object param;
 }

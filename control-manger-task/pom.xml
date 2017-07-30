@@ -12,7 +12,16 @@
     <artifactId>control-manger-task</artifactId>
     <properties>
         <quartz.version>2.3.0</quartz.version>
+        <quartz-mongodb.version>2.0.0</quartz-mongodb.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>michaelklishin</id>
+            <url>https://dl.bintray.com/michaelklishin/maven/</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -30,9 +39,9 @@
             <version>${quartz.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.drore.cloud.control</groupId>
-            <artifactId>control-manger-task</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>com.novemberain</groupId>
+            <artifactId>quartz-mongodb</artifactId>
+            <version>${quartz-mongodb.version}</version>
         </dependency>
     </dependencies>
 

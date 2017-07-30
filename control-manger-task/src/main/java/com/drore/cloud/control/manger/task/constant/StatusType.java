@@ -21,17 +21,12 @@ public enum StatusType {
      */
     PAUSE(1, "暂停"),
 
-    /**
-     * Shutdown status type.
-     * 停止
-     */
-    SHUTDOWN(2, "停止"),
 
     /**
      * Overdue status type.
      * 过期
      */
-    OVERDUE(3, "过期");
+    OVERDUE(2, "过期");
 
     private static final long serialVersionUID = -1211016710017589286L;
     private final int value;
@@ -74,8 +69,6 @@ public enum StatusType {
             name = RUNNING.getName();
         } else if (value == PAUSE.getValue()) {
             name = PAUSE.getName();
-        } else if (value == SHUTDOWN.getValue()) {
-            name = SHUTDOWN.getName();
         } else if (value == OVERDUE.getValue()) {
             name = OVERDUE.getName();
         } else {

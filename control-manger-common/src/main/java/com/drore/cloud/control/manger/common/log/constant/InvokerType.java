@@ -7,7 +7,7 @@ package com.drore.cloud.control.manger.common.log.constant;
  * 创建日期: 2017年07月23日 21:50 <br/>
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
-public enum  InvokerType {
+public enum InvokerType {
     /**
      * Control app invoker type invoker type.//管控app
      */
@@ -41,7 +41,7 @@ public enum  InvokerType {
      *
      * @return the int
      */
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 }

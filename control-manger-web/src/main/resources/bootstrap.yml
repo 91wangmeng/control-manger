@@ -1,4 +1,4 @@
-control-manger-ip: 172.16.11.35
+control-manger-ip: 192.168.199.131
 ##  服务端口
 server:
   port: 8081
@@ -18,8 +18,8 @@ spring:
   data:
     mongodb:
       port: 27017
-      host: ${control-manger-ip}
       database: ${spring.application.name}
+      host: ${control-manger-ip}
 ##  eureka配置
 eureka:
   client:

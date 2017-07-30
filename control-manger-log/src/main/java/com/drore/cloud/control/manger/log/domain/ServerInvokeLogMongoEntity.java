@@ -1,7 +1,7 @@
 package com.drore.cloud.control.manger.log.domain;
 
-import com.drore.cloud.control.manger.log.constant.LogConstant;
 import com.drore.cloud.control.manger.common.log.entity.ServerInvokeLogEntity;
+import com.drore.cloud.control.manger.log.constant.LogConstant;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
