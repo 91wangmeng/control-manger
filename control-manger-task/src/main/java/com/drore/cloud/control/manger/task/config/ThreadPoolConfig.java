@@ -11,6 +11,7 @@ import lombok.Data;
  */
 @Data
 public class ThreadPoolConfig {
+    private String clazz;
     private String threadNamePrefix;
     private int threadCount;
     private int threadPriority;

@@ -56,7 +56,7 @@ public class ScheduleJob extends QuartzJobBean {
         try {
             //执行任务
             logger.debug("任务准备执行，任务ID：" + taskId);
-            ScheduleRunner task = new ScheduleRunner(taskId,taskName, triggerUrl, param);
+            ScheduleRunner task = new ScheduleRunner(taskId, taskName, triggerUrl, param);
             CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> task.run(), service);
 
             String result = completableFuture.get();

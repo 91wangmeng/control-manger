@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -33,7 +32,6 @@ import java.util.Date;
 @EnableMongoRepositories
 @EnableScheduling
 @EnableConfigurationProperties
-@EnableTransactionManagement
 public class ControlMangerWebApplication {
     private static Logger LOGGER = LoggerFactory.getLogger(ControlMangerWebApplication.class);
 

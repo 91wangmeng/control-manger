@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,5 +16,5 @@ import java.util.List;
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
 public interface ScheduleTaskDetailRepository extends MongoRepository<ScheduleTaskDetailEntity, String> {
-    Page<ScheduleTaskDetailEntity> findAllByStatus(int status, Pageable pageable);
+    List<ScheduleTaskDetailEntity> findAllByStatusAndEndTimeAfter(int status, Date date);
 }

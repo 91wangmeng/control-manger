@@ -60,3 +60,4 @@ gpgkey=https://yum.dockerproject.org/gpg<br/>
 ## 踩到的坑
 > * 由于common依赖没控制好,导致config client引入common时同时引入了config server的依赖,导致clien的配置无法生效
 > * docker中运行eurekadocker run -p 8081:8081 -i --net=host control-manger 加上-i --ner=host 才能在config客户端获取配置服务器的地址时不会获取到容器id
+> * mongodb服务器默认采用GMT时间

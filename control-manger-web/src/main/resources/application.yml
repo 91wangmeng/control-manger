@@ -15,15 +15,8 @@ spring:
 ## quartz配置
 org:
   quartz:
-    jobStore:
-      dbName: quartz
-      collectionPrefix: cm_
-      jobDataAsBase64:  false
-      misfireThreshold: 1000
     threadPool:
+      clazz:  org.quartz.simpl.SimpleThreadPool
       threadCount:  20
       threadPriority: 5
       threadNamePrefix: control_manger
-    scheduler:
-      instanceName: CMScheduler
-      instanceId: AUTO

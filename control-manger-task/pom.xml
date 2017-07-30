@@ -21,7 +21,7 @@
             <url>https://dl.bintray.com/michaelklishin/maven/</url>
         </repository>
     </repositories>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

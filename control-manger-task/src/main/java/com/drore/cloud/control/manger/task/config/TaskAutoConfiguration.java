@@ -1,8 +1,5 @@
 package com.drore.cloud.control.manger.task.config;
 
-import com.mongodb.MongoClient;
-import com.novemberain.quartz.mongodb.MongoDBJobStore;
-import org.quartz.simpl.SimpleThreadPool;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,30 +21,22 @@ public class TaskAutoConfiguration {
     @Resource
     private TaskProperties taskProperties;
 
-    @Bean
-    public MongoDBJobStore getMongoDBJobStore(MongoClient mongoClient) {
-        JobStoreConfig jobStore = taskProperties.getJobStore();
-        MongoDBJobStore mongoDBJobStore = new MongoDBJobStore(mongoClient);
-        mongoDBJobStore.setDbName(jobStore.getDbName());
-        mongoDBJobStore.setCollectionPrefix(jobStore.getCollectionPrefix());
-        mongoDBJobStore.setJobDataAsBase64(jobStore.isJobDataAsBase64());
-        mongoDBJobStore.setMisfireThreshold(jobStore.getMisfireThreshold());
-        return mongoDBJobStore;
-    }
 
-    @Bean
-    public SimpleThreadPool getSimpleThreadPool() {
-        SimpleThreadPool simpleThreadPool = new SimpleThreadPool();
-        ThreadPoolConfig threadPool = taskProperties.getThreadPool();
-        simpleThreadPool.setThreadPriority(threadPool.getThreadPriority());
-        simpleThreadPool.setThreadNamePrefix(threadPool.getThreadNamePrefix());
-        return simpleThreadPool;
-    }
-
+    /**
+     * Scheduler factory bean scheduler factory bean.
+     *
+     * @return the scheduler factory bean
+     */
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean() {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setSchedulerName("CMScheduler");
+        Properties properties = new Properties();
+        properties.setProperty("org.quartz.threadPool.threadCount", String.valueOf(taskProperties.getThreadPool().getThreadCount()));
+        properties.setProperty("org.quartz.threadPool.class", taskProperties.getThreadPool().getClazz());
+        properties.setProperty("org.quartz.threadPool.threadNamePrefix", taskProperties.getThreadPool().getThreadNamePrefix());
+        properties.setProperty("org.quartz.threadPool.threadPriority", String.valueOf(taskProperties.getThreadPool().getThreadPriority()));
+        factory.setQuartzProperties(properties);
         //延时启动
         factory.setStartupDelay(30);
         factory.setApplicationContextSchedulerContextKey("applicationContextKey");

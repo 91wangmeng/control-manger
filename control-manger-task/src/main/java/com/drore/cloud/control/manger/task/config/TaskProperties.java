@@ -13,6 +13,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(value = "org.quartz")
 @Data
 public class TaskProperties {
-    private JobStoreConfig jobStore;
     private ThreadPoolConfig threadPool;
 }

@@ -5,6 +5,7 @@ import com.drore.cloud.control.manger.task.constant.TaskConstant;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -24,6 +25,7 @@ public class ScheduleTaskLogEntity extends BaseEntity {
     /**
      * 所属任务id
      */
+    @Indexed
     private String taskId;
     /**
      * 执行结果

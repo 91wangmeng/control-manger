@@ -19,7 +19,7 @@ public class ScheduleRunner {
     private String triggerUrl;
     private Object params;
 
-    public ScheduleRunner(String taskId,String taskName, String triggerUrl, Object params) throws NoSuchMethodException, SecurityException {
+    public ScheduleRunner(String taskId, String taskName, String triggerUrl, Object params) throws NoSuchMethodException, SecurityException {
         this.taskId = taskId;
         this.taskName = taskName;
         this.triggerUrl = triggerUrl;

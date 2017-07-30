@@ -12,11 +12,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.UUID;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
@@ -37,10 +37,8 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @PostConstruct
     public void init() {
-        Pageable pageable = new PageRequest(0, 10000);
-        Page<ScheduleTaskDetailEntity> allTask = detailRepository.findAllByStatus(StatusType.RUNNING.getValue(), pageable);
-        allTask.getContent()
-                .stream()
+        List<ScheduleTaskDetailEntity> allTask = detailRepository.findAllByStatusAndEndTimeAfter(StatusType.RUNNING.getValue(), new Date());
+        allTask.stream()
                 .forEach(taskDetailEntity -> {
                     CronTrigger cronTrigger = ScheduleUtils.getCronTrigger(scheduler, taskDetailEntity.getId());
                     //如果不存在，则创建
@@ -93,12 +91,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      * @return the result
      */
     @Override
-    @Transactional
     public Result addTask(ScheduleTaskDetailEntity taskDetailEntity) {
-        String id = UUID.randomUUID().toString();
-        taskDetailEntity.setId(id);
         taskDetailEntity.setStatus(StatusType.RUNNING.getValue());
-        detailRepository.save(taskDetailEntity);
+        taskDetailEntity = detailRepository.save(taskDetailEntity);
         ScheduleUtils.createScheduleJob(scheduler, taskDetailEntity);
         return Result.success("新增任务成功");
     }
