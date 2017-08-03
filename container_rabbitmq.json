@@ -4,7 +4,7 @@
   "AttachStdout" : false,
   "AttachStderr" : false,
   "OpenStdin" : true,
-  "Env" : [ "RABBITMQ_DEFAULT_USER=admin", "RABBITMQ_DEFAULT_PASS=admin" ],
+  "Env" : [ "RABBITMQ_DEFAULT_USER=admin", "RABBITMQ_DEFAULT_PASS=admin","RABBITMQ_DEFAULT_VHOST=control-manger" ],
   "Image" : "",
   "Volumes" : { },
   "ExposedPorts" : { },
