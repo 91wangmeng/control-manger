@@ -11,6 +11,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>control-manger-web</artifactId>
+    <profiles>
+        <profile>
+            <id>work</id>
+            <properties>
+                <ip>172.16.11.35</ip>
+            </properties>
+        </profile>
+        <profile>
+            <id>home</id>
+            <properties>
+                <ip>192.168.199.131</ip>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -59,6 +76,12 @@
     </dependencies>
     <build>
         <finalName>control-manger</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
 
             <plugin>

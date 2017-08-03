@@ -35,6 +35,7 @@
         <transmittable.version>2.1.1</transmittable.version>
         <guava.version>22.0</guava.version>
         <quartz-mongodb.version>2.0.0</quartz-mongodb.version>
+        <swagger.version>2.6.0</swagger.version>
 
     </properties>
 
@@ -97,6 +98,18 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
 
     </dependencies>

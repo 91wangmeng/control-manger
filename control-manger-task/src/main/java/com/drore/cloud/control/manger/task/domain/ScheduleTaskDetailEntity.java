@@ -5,6 +5,8 @@ import com.drore.cloud.control.manger.common.base.domain.BaseEntity;
 import com.drore.cloud.control.manger.common.base.utils.DateUtils;
 import com.drore.cloud.control.manger.task.constant.StatusType;
 import com.drore.cloud.control.manger.task.constant.TaskConstant;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,42 +26,49 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @Document(collection = TaskConstant.SCHEDULE_TASK_DETAIL_MONGO)
+@ApiModel
 public class ScheduleTaskDetailEntity extends BaseEntity {
 
     /**
      * 任务名称
      */
     @JSONField(name = "task_name")
+    @JsonProperty(value = "task_name")
     private String taskName;
+
     /**
      * cron表达式
      */
     @JSONField(name = "corn_express")
-
+    @JsonProperty(value = "corn_express")
     private String cornExpress;
+
     /**
      * 开始时间 默认当前时间
      */
     @JSONField(name = "start_time", format = DateUtils.YMD_DASH_WITH_TIME)
-
+    @JsonProperty(value = "start_time")
     private Date startTime = Calendar.getInstance().getTime();
+
     /**
      * 结束时间 默认到2099年结束
      */
     @JSONField(name = "end_time", format = DateUtils.YMD_DASH_WITH_TIME)
-
+    @JsonProperty(value = "end_time")
     private Date endTime = TaskConstant.DEFAULT_END_TIME;
+
     /**
      * 触发url
      */
     @JSONField(name = "trigger_url")
-
+    @JsonProperty(value = "trigger_url")
     private String triggerUrl;
+
     /**
      * 触发参数
      */
-    @JSONField(name = "param")
     private Object param;
+
     /**
      * 任务状态
      */

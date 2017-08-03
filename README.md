@@ -54,7 +54,12 @@ gpgkey=https://yum.dockerproject.org/gpg<br/>
 
 构建docker镜像
 > 通过maven插件build构建镜像,注意设置好DOCKER_HOST环境变量.
-
+>docker pull rabbitmq:3.6.10-management<br/>
+ docker run -d --hostname my-rabbit  -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin RABBITMQ_DEFAULT_VHOST=control_manger rabbitmq:3.6.10-management<br/>
+ docker pull rabbitmq<br/>
+ docker run -d -p 6379:6379 redis redis-server<br/>
+ docker pull mongo<br/>
+ docker run -d -p 27017:27017 mongodb mongodb-server<br/>
 
 
 ## 踩到的坑

@@ -1,3 +1,4 @@
+## redis配置
 spring:
   redis:
     pool:

@@ -15,7 +15,7 @@ public class TaskConstant {
 
     static {
         Calendar instance = Calendar.getInstance();
-        instance.set(2099, 1, 1);
+        instance.set(2099, Calendar.JANUARY, 1);
         time = instance.getTime();
     }
 
@@ -33,6 +33,9 @@ public class TaskConstant {
      */
     public static final String SCHEDULE_TASK_KEY = "schedule_task_key";
 
+    /**
+     * The constant DEFAULT_END_TIME.
+     */
     public static final Date DEFAULT_END_TIME = time;
 
 }

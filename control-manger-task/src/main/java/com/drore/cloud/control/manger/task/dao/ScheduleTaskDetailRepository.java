@@ -1,8 +1,6 @@
 package com.drore.cloud.control.manger.task.dao;
 
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskDetailEntity;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Date;
@@ -17,4 +15,5 @@ import java.util.List;
  */
 public interface ScheduleTaskDetailRepository extends MongoRepository<ScheduleTaskDetailEntity, String> {
     List<ScheduleTaskDetailEntity> findAllByStatusAndEndTimeAfter(int status, Date date);
+    List<ScheduleTaskDetailEntity> findAllByEndTimeBefore(Date date);
 }

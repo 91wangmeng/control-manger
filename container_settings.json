@@ -1,0 +1,20 @@
+{
+  "AttachStdin": true,
+  "OpenStdin": true,
+  "Image": "",
+  "Volumes": {},
+  "ExposedPorts": {},
+  "HostConfig": {
+    "Binds": [],
+    "NetworkMode": "host",
+    "PortBindings": {
+      "8081/tcp": [
+        {
+          "HostIp": "",
+          "HostPort": "8081"
+        }
+      ]
+    }
+  },
+  "_comment": ""
+}

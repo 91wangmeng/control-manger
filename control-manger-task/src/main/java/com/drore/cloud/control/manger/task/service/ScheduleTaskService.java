@@ -44,6 +44,14 @@ public interface ScheduleTaskService {
     Result addTask(ScheduleTaskDetailEntity taskDetailEntity);
 
     /**
+     * Update task result.
+     *
+     * @param taskDetailEntity the task detail entity
+     * @return the result
+     */
+    Result updateTask(ScheduleTaskDetailEntity taskDetailEntity);
+
+    /**
      * Delete task result.
      *
      * @param taskId the task id

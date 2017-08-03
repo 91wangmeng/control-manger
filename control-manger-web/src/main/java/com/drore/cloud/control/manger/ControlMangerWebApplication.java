@@ -13,6 +13,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Date;
 
@@ -25,13 +26,20 @@ import java.util.Date;
  * @author wmm
  */
 @SpringBootApplication
+//开启注册发现客户端
 @EnableDiscoveryClient
+//开启eureka服务器
 @EnableEurekaServer
+//开启配置中心服务器
 @EnableConfigServer
+//开启rabbitmq
 @EnableRabbit
+//开启mongodb自动装配
 @EnableMongoRepositories
-@EnableScheduling
+//开启自动注入配置文件
 @EnableConfigurationProperties
+
+//@EnableSwagger2
 public class ControlMangerWebApplication {
     private static Logger LOGGER = LoggerFactory.getLogger(ControlMangerWebApplication.class);
 

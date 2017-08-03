@@ -1,4 +1,4 @@
-control-manger-ip: 192.168.199.131
+control-manger-ip: @ip@
 ##  服务端口
 server:
   port: 8081
@@ -35,6 +35,7 @@ logging:
       netflix:
         eureka: 'off'
         discovery:  'off'
+## 关闭管理类接口的安全认证
 management:
   security:
     enabled: false

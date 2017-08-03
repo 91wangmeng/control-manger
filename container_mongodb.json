@@ -1,0 +1,19 @@
+{
+  "AttachStdin" : false,
+  "AttachStdout" : false,
+  "AttachStderr" : false,
+  "OpenStdin" : true,
+  "Image" : "",
+  "Volumes" : { },
+  "ExposedPorts" : { },
+  "HostConfig" : {
+    "Binds" : [ ],
+    "PortBindings" : {
+      "27017/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "27017"
+      } ]
+    }
+  },
+  "_comment" : ""
+}

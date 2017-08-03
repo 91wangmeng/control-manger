@@ -8,13 +8,11 @@ import com.drore.cloud.control.manger.task.service.ScheduleTaskService;
 import com.drore.cloud.control.manger.task.utils.ScheduleUtils;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -93,9 +91,23 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     @Override
     public Result addTask(ScheduleTaskDetailEntity taskDetailEntity) {
         taskDetailEntity.setStatus(StatusType.RUNNING.getValue());
+        taskDetailEntity.setCreateTime(Calendar.getInstance().getTimeInMillis());
         taskDetailEntity = detailRepository.save(taskDetailEntity);
         ScheduleUtils.createScheduleJob(scheduler, taskDetailEntity);
         return Result.success("新增任务成功");
+    }
+
+    /**
+     * Update task result.
+     *
+     * @param taskDetailEntity the task detail entity
+     * @return the result
+     */
+    @Override
+    public Result updateTask(ScheduleTaskDetailEntity taskDetailEntity) {
+        detailRepository.save(taskDetailEntity);
+        ScheduleUtils.updateScheduleJob(scheduler, taskDetailEntity);
+        return Result.success("更新任务成功");
     }
 
     /**
@@ -106,7 +118,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @Override
     public Result deleteTask(String taskId) {
-        return null;
+        detailRepository.delete(taskId);
+        ScheduleUtils.deleteScheduleJob(scheduler, taskId);
+        return Result.success("删除任务成功");
     }
 
     /**
@@ -116,7 +130,12 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @Override
     public Result clearOverDue() {
-        return null;
+        List<ScheduleTaskDetailEntity> allByEndTimeBefore = detailRepository.findAllByEndTimeBefore(new Date());
+        allByEndTimeBefore
+                .stream()
+                .forEach(taskDetailEntity -> taskDetailEntity.setStatus(StatusType.OVERDUE.getValue()));
+        detailRepository.save(allByEndTimeBefore);
+        return Result.success();
     }
 
 
