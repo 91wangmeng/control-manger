@@ -4,7 +4,6 @@ import com.drore.cloud.control.manger.common.base.domain.vo.Result;
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskDetailEntity;
 import com.drore.cloud.control.manger.task.service.ScheduleTaskService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +44,7 @@ public class ScheduleTaskController {
      */
     @RequestMapping("/updateTask")
     public Result updateTask(@RequestBody ScheduleTaskDetailEntity taskDetailEntity) {
-        return scheduleTaskService.addTask(taskDetailEntity);
+        return scheduleTaskService.updateTask(taskDetailEntity);
     }
 
     /**
@@ -59,8 +58,47 @@ public class ScheduleTaskController {
         return scheduleTaskService.deleteTask(taskId);
     }
 
+    /**
+     * Clear over due result.
+     *
+     * @return the result
+     */
     @RequestMapping("/clearOverDue")
     public Result clearOverDue() {
         return scheduleTaskService.clearOverDue();
+    }
+
+
+    /**
+     * Run task result.
+     *
+     * @param taskId the task id
+     * @return the result
+     */
+    @RequestMapping("/runTask")
+    public Result runTask(@RequestParam(name = "id") String taskId) {
+        return scheduleTaskService.runTask(taskId);
+    }
+
+    /**
+     * Pause task result.
+     *
+     * @param taskId the task id
+     * @return the result
+     */
+    @RequestMapping("/pauseTask")
+    public Result pauseTask(@RequestParam(name = "id") String taskId) {
+        return scheduleTaskService.pauseTask(taskId);
+    }
+
+    /**
+     * Resume task result.
+     *
+     * @param taskId the task id
+     * @return the result
+     */
+    @RequestMapping("/resumeTask")
+    public Result resumeTask(@RequestParam(name = "id") String taskId) {
+        return scheduleTaskService.resumeTask(taskId);
     }
 }

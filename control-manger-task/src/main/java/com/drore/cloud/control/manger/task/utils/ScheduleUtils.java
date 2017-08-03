@@ -35,7 +35,7 @@ public class ScheduleUtils {
     public static CronTrigger getCronTrigger(Scheduler scheduler, String taskId) {
         try {
             return (CronTrigger) scheduler.getTrigger(getTriggerKey(taskId));
-        } catch (SchedulerException e) {
+        } catch (Exception e) {
             throw new CMException("获取定时任务CronTrigger出现异常", e);
         }
     }
@@ -69,7 +69,7 @@ public class ScheduleUtils {
             if (taskDetailEntity.getStatus() == StatusType.PAUSE.getValue()) {
                 pauseJob(scheduler, taskDetailEntity.getId());
             }
-        } catch (SchedulerException e) {
+        } catch (Exception e) {
             throw new CMException("创建定时任务失败", e);
         }
     }
@@ -105,7 +105,7 @@ public class ScheduleUtils {
                 pauseJob(scheduler, taskDetailEntity.getId());
             }
 
-        } catch (SchedulerException e) {
+        } catch (Exception e) {
             throw new CMException("更新定时任务失败", e);
         }
     }
@@ -118,9 +118,8 @@ public class ScheduleUtils {
             //参数
             JobDataMap dataMap = new JobDataMap();
             dataMap.put(TaskConstant.SCHEDULE_TASK_KEY, JSON.toJSONString(taskDetailEntity));
-
             scheduler.triggerJob(getJobKey(taskDetailEntity.getId()), dataMap);
-        } catch (SchedulerException e) {
+        } catch (Exception e) {
             throw new CMException("立即执行定时任务失败", e);
         }
     }
@@ -131,7 +130,7 @@ public class ScheduleUtils {
     public static void pauseJob(Scheduler scheduler, String taskId) {
         try {
             scheduler.pauseJob(getJobKey(taskId));
-        } catch (SchedulerException e) {
+        } catch (Exception e) {
             throw new CMException("暂停定时任务失败", e);
         }
     }
@@ -142,7 +141,7 @@ public class ScheduleUtils {
     public static void resumeJob(Scheduler scheduler, String taskId) {
         try {
             scheduler.resumeJob(getJobKey(taskId));
-        } catch (SchedulerException e) {
+        } catch (Exception e) {
             throw new CMException("暂停定时任务失败", e);
         }
     }
@@ -153,7 +152,7 @@ public class ScheduleUtils {
     public static void deleteScheduleJob(Scheduler scheduler, String taskId) {
         try {
             scheduler.deleteJob(getJobKey(taskId));
-        } catch (SchedulerException e) {
+        } catch (Exception e) {
             throw new CMException("删除定时任务失败", e);
         }
     }

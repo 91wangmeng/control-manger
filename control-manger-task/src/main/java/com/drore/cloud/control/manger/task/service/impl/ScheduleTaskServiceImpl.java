@@ -57,7 +57,8 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     @Override
     public Result runTask(String taskId) {
         ScheduleUtils.run(scheduler, detailRepository.findOne(taskId));
-        return Result.success("开始运行任务");
+        return Result.success("运行任务成功");
+
     }
 
     /**
@@ -68,7 +69,8 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @Override
     public Result pauseTask(String taskId) {
-        return null;
+        ScheduleUtils.pauseJob(scheduler, taskId);
+        return Result.success("暂停任务成功");
     }
 
     /**
@@ -79,7 +81,8 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @Override
     public Result resumeTask(String taskId) {
-        return null;
+        ScheduleUtils.resumeJob(scheduler, taskId);
+        return Result.success("恢复任务成功");
     }
 
     /**
