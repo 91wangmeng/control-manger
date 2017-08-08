@@ -6,10 +6,14 @@ services:
       - "27017"
     ports:
       - "27017:27017"
+    volumes:
+      - /mnt/mongodb/:/data/db
   redis:
     image: redis:latest
     expose:
       - "6379"
+    volumes:
+      - /mnt/redis/:/data
     ports:
       - "6379:6379"
   rabbitmq:
@@ -17,6 +21,8 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    volumes:
+      - /mnt/rabbitmq/:/var/rabbitmq/lib
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
