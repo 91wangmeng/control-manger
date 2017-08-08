@@ -17,9 +17,9 @@ public class ScheduleRunner {
     private String taskId;
     private String taskName;
     private String triggerUrl;
-    private Object params;
+    private Map<String,Object> params;
 
-    public ScheduleRunner(String taskId, String taskName, String triggerUrl, Object params) throws NoSuchMethodException, SecurityException {
+    public ScheduleRunner(String taskId, String taskName, String triggerUrl, Map<String,Object> params) throws NoSuchMethodException, SecurityException {
         this.taskId = taskId;
         this.taskName = taskName;
         this.triggerUrl = triggerUrl;
@@ -32,7 +32,7 @@ public class ScheduleRunner {
             if (StringUtils.isEmpty(params)) {
                 result = HttpRequestUtils.get(taskName, triggerUrl);
             } else {
-                result = HttpRequestUtils.postJson(taskName, triggerUrl, (Map<String, Object>) params);
+                result = HttpRequestUtils.postJson(taskName, triggerUrl, params);
             }
         } catch (Exception e) {
             throw new CMException("执行定时任务失败", e);

@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
@@ -62,5 +63,5 @@ public class ScheduleTaskLogEntity extends BaseEntity {
     /**
      * 触发参数
      */
-    private Object param;
+    private Map<String,Object> param;
 }

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -44,7 +45,7 @@ public class ScheduleJob extends QuartzJobBean {
         log.setTaskId(taskId);
         String triggerUrl = scheduleJob.getTriggerUrl();
         log.setTriggerUrl(triggerUrl);
-        Object param = scheduleJob.getParam();
+        Map<String, Object> param = scheduleJob.getParam();
         log.setParam(param);
         String cornExpress = scheduleJob.getCornExpress();
         log.setCornExpress(cornExpress);
