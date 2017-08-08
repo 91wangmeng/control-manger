@@ -8,11 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Date;
@@ -30,8 +27,6 @@ import java.util.Date;
 @EnableDiscoveryClient
 //开启eureka服务器
 @EnableEurekaServer
-//开启配置中心服务器
-@EnableConfigServer
 //开启rabbitmq
 @EnableRabbit
 //开启mongodb自动装配
@@ -39,7 +34,8 @@ import java.util.Date;
 //开启自动注入配置文件
 @EnableConfigurationProperties
 
-//@EnableSwagger2
+@EnableSwagger2
+
 public class ControlMangerWebApplication {
     private static Logger LOGGER = LoggerFactory.getLogger(ControlMangerWebApplication.class);
 

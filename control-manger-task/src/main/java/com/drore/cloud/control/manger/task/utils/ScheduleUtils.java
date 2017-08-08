@@ -87,6 +87,9 @@ public class ScheduleUtils {
 
             CronTrigger trigger = getCronTrigger(scheduler, taskDetailEntity.getId());
 
+            if (trigger == null) {
+                throw new CMException("该任务不存在");
+            }
             //按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder()
                     .startAt(taskDetailEntity.getStartTime())

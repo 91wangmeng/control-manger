@@ -1,0 +1,39 @@
+version: "2.0"
+services:
+  mongodb:
+    image: mongo:latest
+    expose:
+      - "27017"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  rabbitmq:
+    image:  rabbitmq:3.6.10-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+      - RABBITMQ_DEFAULT_VHOST=control-manger
+  control-manger:
+    image: control-manger:latest
+    ports:
+      - "8081:8081"
+    links:
+      - mongodb
+      - redis
+      - rabbitmq
+    depends_on:
+      - mongodb
+      - redis
+      - rabbitmq
+  control-manger-config:
+    image: control-manger-config
+    ports:
+      - "8888:8888"
+    links:
+      - control-manger
+    depends_on:
+      - control-manger

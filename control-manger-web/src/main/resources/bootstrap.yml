@@ -6,20 +6,12 @@ server:
 spring:
   application:
     name: control-manger
-  cloud:
-    config:
-      server:
-        prefix: /control_config/
-        git:
-          uri: https://git.oschina.net/92wmm/control-manger-config.git
-          username: 92wmm
-          password: 6492178
-          search-paths: config/,config/partition
+
   data:
     mongodb:
       port: 27017
       database: ${spring.application.name}
-      host: ${control-manger-ip}
+      host: mongodb
 ##  eureka配置
 eureka:
   client:

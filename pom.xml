@@ -26,6 +26,26 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
+    <profiles>
+        <profile>
+            <id>work</id>
+            <properties>
+                <ip>172.16.11.182</ip>
+            </properties>
+        </profile>
+        <profile>
+            <id>home</id>
+            <properties>
+                <ip>192.168.199.131</ip>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

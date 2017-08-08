@@ -1,20 +1,25 @@
 {
-  "AttachStdin": true,
-  "OpenStdin": true,
-  "Image": "",
-  "Volumes": {},
-  "ExposedPorts": {},
-  "HostConfig": {
-    "Binds": [],
-    "NetworkMode": "host",
-    "PortBindings": {
-      "8081/tcp": [
-        {
-          "HostIp": "",
-          "HostPort": "8081"
-        }
-      ]
+  "Hostname" : "my-rabbit",
+  "AttachStdin" : false,
+  "AttachStdout" : false,
+  "AttachStderr" : false,
+  "OpenStdin" : true,
+  "Env" : [ "RABBITMQ_DEFAULT_USER=admin", "RABBITMQ_DEFAULT_PASS=admin", "RABBITMQ_DEFAULT_VHOST=control-manger" ],
+  "Image" : "",
+  "Volumes" : { },
+  "ExposedPorts" : { },
+  "HostConfig" : {
+    "Binds" : [ ],
+    "PortBindings" : {
+      "5672/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "5672"
+      } ],
+      "15672/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "15672"
+      } ]
     }
   },
-  "_comment": ""
+  "_comment" : ""
 }

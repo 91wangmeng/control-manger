@@ -11,29 +11,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>control-manger-web</artifactId>
-    <profiles>
-        <profile>
-            <id>work</id>
-            <properties>
-                <ip>172.16.11.35</ip>
-            </properties>
-        </profile>
-        <profile>
-            <id>home</id>
-            <properties>
-                <ip>192.168.199.131</ip>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka-server</artifactId>
@@ -95,6 +75,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
+                    <dockerHost>http://${ip}:2375</dockerHost>
                     <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
                     <!-- 详见：https://github.com/spotify/docker-maven-plugin    Invalid repository name ... only [a-z0-9-_.] are allowed-->
                     <imageName>control-manger</imageName>

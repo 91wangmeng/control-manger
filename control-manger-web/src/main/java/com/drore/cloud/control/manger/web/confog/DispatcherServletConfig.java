@@ -1,6 +1,7 @@
 package com.drore.cloud.control.manger.web.confog;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.filter.OrderedCharacterEncodingFilter;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +16,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,7 +33,6 @@ import java.util.List;
 @Configuration
 @ComponentScan(basePackages = {"com.drore.cloud.control.manger.web"}, includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = RestController.class)})
 public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
@@ -91,5 +93,6 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
         filter.setForceResponseEncoding(true);
         return filter;
     }
+
 
 }

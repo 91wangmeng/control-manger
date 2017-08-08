@@ -6,9 +6,10 @@ spring:
       min-idle: 0
       max-wait: 5000
       max-active: 8
-    host: ${control-manger-ip}
+    host: redis
+    port: 6379
   rabbitmq:
-    host: ${control-manger-ip}
+    host: rabbitmq
     port: 5672
     username: admin
     password: admin
