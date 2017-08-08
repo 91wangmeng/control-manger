@@ -1,6 +1,9 @@
 package com.drore.cloud.control.manger.web.control;
 
 import com.drore.cloud.control.manger.common.base.domain.vo.Result;
+import com.drore.cloud.control.manger.common.log.annotations.ServerInvokeLog;
+import com.drore.cloud.control.manger.common.log.constant.InvokerType;
+import com.drore.cloud.control.manger.common.log.constant.LogType;
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskDetailEntity;
 import com.drore.cloud.control.manger.task.service.ScheduleTaskService;
 import io.swagger.annotations.Api;
@@ -32,6 +35,7 @@ public class ScheduleTaskController {
      */
     @RequestMapping(value = "/addTask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "新增定时任务")
+    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = InvokerType.CONTROL_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
     public Result addTask(@RequestBody ScheduleTaskDetailEntity taskDetailEntity) {
         return scheduleTaskService.addTask(taskDetailEntity);
     }
@@ -42,10 +46,14 @@ public class ScheduleTaskController {
      * @param taskDetailEntity the task detail entity
      * @return the result
      */
-    @RequestMapping("/updateTask")
+    @RequestMapping(value = "/updateTask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "更新定时任务")
+    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = InvokerType.CONTROL_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
+
     public Result updateTask(@RequestBody ScheduleTaskDetailEntity taskDetailEntity) {
         return scheduleTaskService.updateTask(taskDetailEntity);
     }
+
 
     /**
      * Delete task result.
@@ -53,8 +61,10 @@ public class ScheduleTaskController {
      * @param taskId the task id
      * @return the result
      */
-    @RequestMapping("/deleteTask")
-    public Result deleteTask(@RequestParam(name = "id") String taskId) {
+    @RequestMapping(value = "/deleteTask/{id}", method = RequestMethod.GET)
+    @ApiOperation(value = "删除定时任务")
+    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = InvokerType.CONTROL_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
+    public Result deleteTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.deleteTask(taskId);
     }
 
@@ -63,7 +73,8 @@ public class ScheduleTaskController {
      *
      * @return the result
      */
-    @RequestMapping("/clearOverDue")
+    @RequestMapping(value = "/clearOverDue", method = RequestMethod.GET)
+    @ApiOperation(value = "归档过期定时任务")
     public Result clearOverDue() {
         return scheduleTaskService.clearOverDue();
     }
@@ -75,8 +86,10 @@ public class ScheduleTaskController {
      * @param taskId the task id
      * @return the result
      */
-    @RequestMapping("/runTask")
-    public Result runTask(@RequestParam(name = "id") String taskId) {
+    @RequestMapping(value = "/runTask/{id}", method = RequestMethod.GET)
+    @ApiOperation(value = "执行定时任务")
+
+    public Result runTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.runTask(taskId);
     }
 
@@ -86,8 +99,10 @@ public class ScheduleTaskController {
      * @param taskId the task id
      * @return the result
      */
-    @RequestMapping("/pauseTask")
-    public Result pauseTask(@RequestParam(name = "id") String taskId) {
+    @RequestMapping(value = "/pauseTask/{id}", method = RequestMethod.GET)
+    @ApiOperation(value = "暂停定时任务")
+
+    public Result pauseTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.pauseTask(taskId);
     }
 
@@ -97,8 +112,10 @@ public class ScheduleTaskController {
      * @param taskId the task id
      * @return the result
      */
-    @RequestMapping("/resumeTask")
-    public Result resumeTask(@RequestParam(name = "id") String taskId) {
+    @RequestMapping(value = "/resumeTask/{}", method = RequestMethod.GET)
+    @ApiOperation(value = "恢复定时任务")
+
+    public Result resumeTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.resumeTask(taskId);
     }
 }

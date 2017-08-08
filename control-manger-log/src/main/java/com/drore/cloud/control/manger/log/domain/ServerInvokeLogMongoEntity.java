@@ -23,6 +23,7 @@ public class ServerInvokeLogMongoEntity extends ServerInvokeLogEntity {
      * @param serverInvokeLogEntity the server invoke log entity
      */
     public ServerInvokeLogMongoEntity(ServerInvokeLogEntity serverInvokeLogEntity) {
+        this.setApplicationName(serverInvokeLogEntity.getApplicationName());
         this.setClientIp(serverInvokeLogEntity.getClientIp());
         this.setConsumeTime(serverInvokeLogEntity.getConsumeTime());
         this.setFailCause(serverInvokeLogEntity.getFailCause());

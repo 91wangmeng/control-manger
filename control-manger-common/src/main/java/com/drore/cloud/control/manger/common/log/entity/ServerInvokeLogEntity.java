@@ -16,6 +16,12 @@ import lombok.ToString;
 @Data
 @ToString
 public class ServerInvokeLogEntity extends BaseEntity {
+
+    /**
+     * 所属项目名称
+     */
+    @JSONField(name = "application_name")
+    private String applicationName;
     /**
      * 服务描述
      */

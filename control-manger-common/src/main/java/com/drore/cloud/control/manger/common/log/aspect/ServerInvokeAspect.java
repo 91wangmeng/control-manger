@@ -12,6 +12,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -36,6 +37,8 @@ import java.util.stream.Collectors;
 @Component
 @Slf4j
 public class ServerInvokeAspect {
+    @Value("${spring.application.name}")
+    private String application_name;
     @Resource
     private RabbitBuilder rabbitBuilder;
 
@@ -101,6 +104,7 @@ public class ServerInvokeAspect {
     public Object doAround(ProceedingJoinPoint joinPoint) {
         long startTs = System.currentTimeMillis();
         ServerInvokeLogEntity logEntity = getServerInvokeLogEntity(joinPoint);
+        logEntity.setApplicationName(application_name);
         UUID uuid = UUID.randomUUID();
         String id = String.valueOf(uuid);
         TransmittableThreadLocalUtils.set(id);

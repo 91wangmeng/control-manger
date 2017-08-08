@@ -1,5 +1,8 @@
 package com.drore.cloud.control.manger.common.base.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,11 +16,17 @@ import java.io.Serializable;
  * @author wmm
  */
 @Data
+@ApiModel
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = -8780917125380864387L;
+    @JsonProperty("is_success")
+    @ApiModelProperty(value = "是否成功",example = "true")
     public boolean isSuccess;
+    @ApiModelProperty(value = "响应码",example = "200")
     public int code;
+    @ApiModelProperty(value = "消息体",example = "操作成功")
     public String message;
+    @ApiModelProperty(value = "返回数据")
     public T data;
 
     public Result() {
