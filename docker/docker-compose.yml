@@ -30,7 +30,7 @@ services:
       - redis
       - rabbitmq
   control-manger-config:
-    image: control-manger-config
+    image: control-manger-config:latest
     ports:
       - "8888:8888"
     links:
