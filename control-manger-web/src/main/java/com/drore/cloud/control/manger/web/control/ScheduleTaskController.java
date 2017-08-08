@@ -35,7 +35,7 @@ public class ScheduleTaskController {
      */
     @RequestMapping(value = "/addTask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "新增定时任务")
-    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = InvokerType.CONTROL_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
+    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = {InvokerType.MANGER_WEB_INVOKER_TYPE, InvokerType.CONTROL_WEB_INVOKER_TYPE}, logType = LogType.OPERATION_LOG_TYPE)
     public Result addTask(@RequestBody ScheduleTaskDetailEntity taskDetailEntity) {
         return scheduleTaskService.addTask(taskDetailEntity);
     }
@@ -48,7 +48,7 @@ public class ScheduleTaskController {
      */
     @RequestMapping(value = "/updateTask", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "更新定时任务")
-    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = InvokerType.CONTROL_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
+    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = {InvokerType.MANGER_WEB_INVOKER_TYPE, InvokerType.CONTROL_WEB_INVOKER_TYPE}, logType = LogType.OPERATION_LOG_TYPE)
 
     public Result updateTask(@RequestBody ScheduleTaskDetailEntity taskDetailEntity) {
         return scheduleTaskService.updateTask(taskDetailEntity);
@@ -63,7 +63,7 @@ public class ScheduleTaskController {
      */
     @RequestMapping(value = "/deleteTask/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "删除定时任务")
-    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = InvokerType.CONTROL_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
+    @ServerInvokeLog(serverDescription = "新增定时任务", invoker = {InvokerType.MANGER_WEB_INVOKER_TYPE, InvokerType.CONTROL_WEB_INVOKER_TYPE}, logType = LogType.OPERATION_LOG_TYPE)
     public Result deleteTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.deleteTask(taskId);
     }
@@ -88,6 +88,7 @@ public class ScheduleTaskController {
      */
     @RequestMapping(value = "/runTask/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "执行定时任务")
+    @ServerInvokeLog(serverDescription = "执行定时任务", invoker = InvokerType.MANGER_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
 
     public Result runTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.runTask(taskId);
@@ -101,6 +102,7 @@ public class ScheduleTaskController {
      */
     @RequestMapping(value = "/pauseTask/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "暂停定时任务")
+    @ServerInvokeLog(serverDescription = "暂停定时任务", invoker = InvokerType.MANGER_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
 
     public Result pauseTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.pauseTask(taskId);
@@ -112,8 +114,9 @@ public class ScheduleTaskController {
      * @param taskId the task id
      * @return the result
      */
-    @RequestMapping(value = "/resumeTask/{}", method = RequestMethod.GET)
+    @RequestMapping(value = "/resumeTask/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "恢复定时任务")
+    @ServerInvokeLog(serverDescription = "恢复定时任务", invoker = InvokerType.MANGER_WEB_INVOKER_TYPE, logType = LogType.OPERATION_LOG_TYPE)
 
     public Result resumeTask(@PathVariable(name = "id") String taskId) {
         return scheduleTaskService.resumeTask(taskId);

@@ -17,6 +17,10 @@ public enum InvokerType {
      */
     CONTROL_WEB_INVOKER_TYPE(1),
     /**
+     * Control web INVOKER type invoker type.//管理系统web前端
+     */
+    MANGER_WEB_INVOKER_TYPE(1),
+    /**
      * Tdp invoker type invoker type.
      */
     TDP_INVOKER_TYPE(2),
