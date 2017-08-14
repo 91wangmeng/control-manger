@@ -1,5 +1,26 @@
 version: "2.0"
 services:
+  teamcity-server:
+    image: jetbrains/teamcity-server
+    container_name: teamcity-server
+    volumes:
+      - /mnt/teamcity_server:/data/teamcity_server/datadir
+      - /mnt/teamcity_server/logs:/opt/teamcity/logs
+    ports:
+      - "8111:8111"
+    expose:
+      - "8111"
+  teamcity-agent:
+    image: jetbrains/teamcity-minimal-agent
+    environment:
+      - SERVER_URL=teamcity-server:8111
+    volumes:
+      - /mnt/teamcity_agent:/data/teamcity_agent/conf
+    container_name: teamcity-agent
+    links:
+      - teamcity-server
+    depends_on:
+      - teamcity-server
   mongodb:
     image: mongo:latest
     expose:
