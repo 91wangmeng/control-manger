@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class CMExceptionHandler {
+    /**
+     * Handle other exceptions result.
+     *
+     * @param ex the ex
+     * @return the result
+     */
     @ExceptionHandler(value = {CMException.class})
     public Result handleOtherExceptions(final CMException ex) {
         return Result.error(ex.getCode(), ex.getMessage());
