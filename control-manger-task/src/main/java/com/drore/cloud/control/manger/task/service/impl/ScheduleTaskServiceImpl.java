@@ -2,6 +2,7 @@ package com.drore.cloud.control.manger.task.service.impl;
 
 import com.drore.cloud.control.manger.common.base.domain.vo.Result;
 import com.drore.cloud.control.manger.task.constant.StatusType;
+import com.drore.cloud.control.manger.task.constant.TaskConstant;
 import com.drore.cloud.control.manger.task.dao.ScheduleTaskDetailRepository;
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskDetailEntity;
 import com.drore.cloud.control.manger.task.service.ScheduleTaskService;
@@ -57,7 +58,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     @Override
     public Result runTask(String taskId) {
         ScheduleUtils.run(scheduler, detailRepository.findOne(taskId));
-        return Result.success("运行任务成功");
+        return Result.success(TaskConstant.SUCCESS_RUN);
 
     }
 
@@ -70,7 +71,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     @Override
     public Result pauseTask(String taskId) {
         ScheduleUtils.pauseJob(scheduler, taskId);
-        return Result.success("暂停任务成功");
+        return Result.success(TaskConstant.SUCCESS_PAUSE);
     }
 
     /**
@@ -82,7 +83,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     @Override
     public Result resumeTask(String taskId) {
         ScheduleUtils.resumeJob(scheduler, taskId);
-        return Result.success("恢复任务成功");
+        return Result.success(TaskConstant.SUCCESS_RESUME);
     }
 
     /**
@@ -97,7 +98,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
         taskDetailEntity.setCreateTime(Calendar.getInstance().getTimeInMillis());
         taskDetailEntity = detailRepository.save(taskDetailEntity);
         ScheduleUtils.createScheduleJob(scheduler, taskDetailEntity);
-        return Result.success("新增任务成功");
+        return Result.success(TaskConstant.SUCCESS_ADD);
     }
 
     /**
@@ -110,7 +111,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     public Result updateTask(ScheduleTaskDetailEntity taskDetailEntity) {
         detailRepository.save(taskDetailEntity);
         ScheduleUtils.updateScheduleJob(scheduler, taskDetailEntity);
-        return Result.success("更新任务成功");
+        return Result.success(TaskConstant.SUCCESS_UPDATE);
     }
 
     /**
@@ -123,7 +124,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     public Result deleteTask(String taskId) {
         detailRepository.delete(taskId);
         ScheduleUtils.deleteScheduleJob(scheduler, taskId);
-        return Result.success("删除任务成功");
+        return Result.success(TaskConstant.SUCCESS_DELETE);
     }
 
     /**

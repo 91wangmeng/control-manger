@@ -17,6 +17,9 @@ import org.quartz.*;
 public class ScheduleUtils {
     /**
      * 获取触发器key
+     *
+     * @param taskId the task id
+     * @return the trigger key
      */
     public static TriggerKey getTriggerKey(String taskId) {
         return TriggerKey.triggerKey(taskId);
@@ -24,6 +27,9 @@ public class ScheduleUtils {
 
     /**
      * 获取jobKey
+     *
+     * @param taskId the task id
+     * @return the job key
      */
     public static JobKey getJobKey(String taskId) {
         return JobKey.jobKey(taskId);
@@ -31,6 +37,10 @@ public class ScheduleUtils {
 
     /**
      * 获取表达式触发器
+     *
+     * @param scheduler the scheduler
+     * @param taskId    the task id
+     * @return the cron trigger
      */
     public static CronTrigger getCronTrigger(Scheduler scheduler, String taskId) {
         try {
@@ -42,6 +52,9 @@ public class ScheduleUtils {
 
     /**
      * 创建定时任务
+     *
+     * @param scheduler        the scheduler
+     * @param taskDetailEntity the task detail entity
      */
     public static void createScheduleJob(Scheduler scheduler, ScheduleTaskDetailEntity taskDetailEntity) {
         try {
@@ -76,6 +89,9 @@ public class ScheduleUtils {
 
     /**
      * 更新定时任务
+     *
+     * @param scheduler        the scheduler
+     * @param taskDetailEntity the task detail entity
      */
     public static void updateScheduleJob(Scheduler scheduler, ScheduleTaskDetailEntity taskDetailEntity) {
         try {
@@ -88,7 +104,7 @@ public class ScheduleUtils {
             CronTrigger trigger = getCronTrigger(scheduler, taskDetailEntity.getId());
 
             if (trigger == null) {
-                throw new CMException("该任务不存在");
+                throw new CMException("该任务不存在或已过期");
             }
             //按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder()
@@ -108,6 +124,8 @@ public class ScheduleUtils {
                 pauseJob(scheduler, taskDetailEntity.getId());
             }
 
+        } catch (CMException e) {
+            throw e;
         } catch (Exception e) {
             throw new CMException("更新定时任务失败", e);
         }
@@ -115,6 +133,9 @@ public class ScheduleUtils {
 
     /**
      * 立即执行任务
+     *
+     * @param scheduler        the scheduler
+     * @param taskDetailEntity the task detail entity
      */
     public static void run(Scheduler scheduler, ScheduleTaskDetailEntity taskDetailEntity) {
         try {
@@ -129,6 +150,9 @@ public class ScheduleUtils {
 
     /**
      * 暂停任务
+     *
+     * @param scheduler the scheduler
+     * @param taskId    the task id
      */
     public static void pauseJob(Scheduler scheduler, String taskId) {
         try {
@@ -140,6 +164,9 @@ public class ScheduleUtils {
 
     /**
      * 恢复任务
+     *
+     * @param scheduler the scheduler
+     * @param taskId    the task id
      */
     public static void resumeJob(Scheduler scheduler, String taskId) {
         try {
@@ -151,6 +178,9 @@ public class ScheduleUtils {
 
     /**
      * 删除定时任务
+     *
+     * @param scheduler the scheduler
+     * @param taskId    the task id
      */
     public static void deleteScheduleJob(Scheduler scheduler, String taskId) {
         try {
@@ -159,4 +189,5 @@ public class ScheduleUtils {
             throw new CMException("删除定时任务失败", e);
         }
     }
+
 }

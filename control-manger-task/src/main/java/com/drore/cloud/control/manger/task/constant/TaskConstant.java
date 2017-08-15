@@ -11,6 +11,30 @@ import java.util.Date;
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
 public class TaskConstant {
+    /**
+     * The constant SUCCESS_RUN.
+     */
+    public static final String SUCCESS_RUN = "运行任务成功";
+    /**
+     * The constant SUCCESS_PAUSE.
+     */
+    public static final String SUCCESS_PAUSE = "暂停任务成功";
+    /**
+     * The constant SUCCESS_RESUME.
+     */
+    public static final String SUCCESS_RESUME = "恢复任务成功";
+    /**
+     * The constant SUCCESS_ADD.
+     */
+    public static final String SUCCESS_ADD = "新增任务成功";
+    /**
+     * The constant SUCCESS_UPDATE.
+     */
+    public static final String SUCCESS_UPDATE = "更新任务成功";
+    /**
+     * The constant SUCCESS_DELETE.
+     */
+    public static final String SUCCESS_DELETE = "删除任务成功";
     private static Date time;
 
     static {

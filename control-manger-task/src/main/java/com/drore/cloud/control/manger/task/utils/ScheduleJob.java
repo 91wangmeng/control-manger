@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
  * 定时任务
  *
  * @author chenshun
- * @email sunlightcs@gmail.com
+ * @email sunlightcs @gmail.com
  * @date 2016年11月30日 下午12:44:21
  */
 public class ScheduleJob extends QuartzJobBean {

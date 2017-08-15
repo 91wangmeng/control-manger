@@ -10,7 +10,7 @@ import java.util.Map;
  * 执行定时任务
  *
  * @author chenshun
- * @email sunlightcs@gmail.com
+ * @email sunlightcs @gmail.com
  * @date 2016年11月30日 下午12:49:33
  */
 public class ScheduleRunner {
@@ -19,6 +19,16 @@ public class ScheduleRunner {
     private String triggerUrl;
     private Map<String,Object> params;
 
+    /**
+     * Instantiates a new Schedule runner.
+     *
+     * @param taskId     the task id
+     * @param taskName   the task name
+     * @param triggerUrl the trigger url
+     * @param params     the params
+     * @throws NoSuchMethodException the no such method exception
+     * @throws SecurityException     the security exception
+     */
     public ScheduleRunner(String taskId, String taskName, String triggerUrl, Map<String,Object> params) throws NoSuchMethodException, SecurityException {
         this.taskId = taskId;
         this.taskName = taskName;
@@ -26,6 +36,11 @@ public class ScheduleRunner {
         this.params = params;
     }
 
+    /**
+     * Run string.
+     *
+     * @return the string
+     */
     public String run() {
         String result;
         try {
