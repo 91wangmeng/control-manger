@@ -1,5 +1,6 @@
 package com.drore.cloud.control.manger.web.Test;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,4 +26,9 @@ public class BaseControllerTest {
 
     @Resource
     public WebApplicationContext webApplicationContext;
+
+    @Test
+    private void test() {
+
+    }
 }
