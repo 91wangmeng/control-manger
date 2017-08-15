@@ -27,6 +27,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
     @Value("${control-manger-ip}")
     private String serverUrl;
+
+    /**
+     * Create rest api docket.
+     *
+     * @return the docket
+     */
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
