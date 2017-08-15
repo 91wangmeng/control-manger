@@ -67,7 +67,7 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
     /**
      * 请求处理程序映射适配器
      *
-     * @return
+     * @return swagger fast json http message converter
      */
     @Bean
     public HttpMessageConverter getSwaggerFastJsonHttpMessageConverter() {
@@ -84,6 +84,11 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
     }
 
 
+    /**
+     * Character encoding filter character encoding filter.
+     *
+     * @return the character encoding filter
+     */
     @Bean
     @ConditionalOnMissingBean(CharacterEncodingFilter.class)
     public CharacterEncodingFilter characterEncodingFilter() {
