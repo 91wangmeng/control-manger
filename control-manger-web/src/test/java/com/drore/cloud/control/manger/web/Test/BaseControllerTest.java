@@ -28,7 +28,7 @@ public class BaseControllerTest {
     public WebApplicationContext webApplicationContext;
 
     @Test
-    private void test() {
+    public void test() {
 
     }
 }
