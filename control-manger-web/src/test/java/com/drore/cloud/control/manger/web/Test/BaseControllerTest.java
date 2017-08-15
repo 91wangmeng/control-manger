@@ -17,11 +17,11 @@ import javax.annotation.Resource;
  * 创建日期: 2017年08月15日 21:37 <br/>
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
-@RunWith(SpringRunner.class)
+/*@RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc*/
 public class BaseControllerTest {
-    @Resource
+    /*@Resource
     public MockMvc mockMvc;
 
     @Resource
@@ -30,5 +30,5 @@ public class BaseControllerTest {
     @Test
     public void test() {
 
-    }
+    }*/
 }
