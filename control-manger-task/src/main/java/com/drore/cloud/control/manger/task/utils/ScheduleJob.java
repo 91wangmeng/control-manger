@@ -75,7 +75,6 @@ public class ScheduleJob extends QuartzJobBean {
             //任务执行总时长
             long times = System.currentTimeMillis() - startTime;
             log.setConsumeTime(times);
-
             //任务状态    0：成功    1：失败
             log.setSuccess(false);
             log.setFailCause(e.getMessage());
