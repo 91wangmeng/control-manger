@@ -31,17 +31,11 @@
         <profile>
             <id>work</id>
             <properties>
-                <ip>172.16.11.182</ip>
+                <ip>192.168.11.130</ip>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
             </properties>
-        </profile>
-        <profile>
-            <id>home</id>
-            <properties>
-                <ip>192.168.199.131</ip>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
     </profiles>
 
