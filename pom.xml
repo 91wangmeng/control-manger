@@ -29,13 +29,13 @@
 
     <profiles>
         <profile>
-            <id>work</id>
             <properties>
                 <ip>192.168.11.130</ip>
+            </properties>
                 <activation>
                     <activeByDefault>true</activeByDefault>
                 </activation>
-            </properties>
+            <id>work</id>
         </profile>
     </profiles>
 

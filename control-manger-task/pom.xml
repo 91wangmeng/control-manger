@@ -12,7 +12,6 @@
     <artifactId>control-manger-task</artifactId>
     <properties>
         <quartz.version>2.3.0</quartz.version>
-        <quartz-mongodb.version>2.0.0</quartz-mongodb.version>
     </properties>
 
     <repositories>
@@ -37,11 +36,6 @@
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>${quartz.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.novemberain</groupId>
-            <artifactId>quartz-mongodb</artifactId>
-            <version>${quartz-mongodb.version}</version>
         </dependency>
     </dependencies>
 
