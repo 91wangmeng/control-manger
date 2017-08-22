@@ -14,13 +14,6 @@
         <quartz.version>2.3.0</quartz.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>michaelklishin</id>
-            <url>https://dl.bintray.com/michaelklishin/maven/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
