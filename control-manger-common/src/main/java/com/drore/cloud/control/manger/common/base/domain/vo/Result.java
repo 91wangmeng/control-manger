@@ -1,6 +1,5 @@
 package com.drore.cloud.control.manger.common.base.domain.vo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
