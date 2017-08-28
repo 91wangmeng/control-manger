@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
 @Component
-public class SpringContextUtils implements ApplicationContextAware {
+public class ControlSpringContextUtils implements ApplicationContextAware {
     /**
      * The constant applicationContext.
      */
@@ -22,7 +22,7 @@ public class SpringContextUtils implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext)
             throws BeansException {
-        SpringContextUtils.applicationContext = applicationContext;
+        ControlSpringContextUtils.applicationContext = applicationContext;
     }
 
     /**

@@ -8,7 +8,7 @@ import lombok.ToString;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -51,11 +51,11 @@ public class ScheduleTaskLogEntity extends BaseEntity {
     /**
      * 开始时间
      */
-    private Date startTime;
+    private LocalDate startTime;
     /**
      * 结束时间
      */
-    private Date endTime;
+    private LocalDate endTime;
     /**
      * 触发url
      */
@@ -63,5 +63,5 @@ public class ScheduleTaskLogEntity extends BaseEntity {
     /**
      * 触发参数
      */
-    private Map<String,Object> param;
+    private Map<String, Object> param;
 }

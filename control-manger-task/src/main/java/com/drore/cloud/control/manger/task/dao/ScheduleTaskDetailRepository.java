@@ -3,7 +3,7 @@ package com.drore.cloud.control.manger.task.dao;
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskDetailEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.Date;
+import java.time.temporal.TemporalAccessor;
 import java.util.List;
 
 /**
@@ -14,6 +14,7 @@ import java.util.List;
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
 public interface ScheduleTaskDetailRepository extends MongoRepository<ScheduleTaskDetailEntity, String> {
-    List<ScheduleTaskDetailEntity> findAllByStatusAndEndTimeAfter(int status, Date date);
-    List<ScheduleTaskDetailEntity> findAllByEndTimeBefore(Date date);
+    List<ScheduleTaskDetailEntity> findAllByStatusAndEndTimeAfter(int status, TemporalAccessor date);
+
+    List<ScheduleTaskDetailEntity> findAllByEndTimeBefore(TemporalAccessor date);
 }

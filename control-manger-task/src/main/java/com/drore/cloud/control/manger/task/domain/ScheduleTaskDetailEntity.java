@@ -2,7 +2,7 @@ package com.drore.cloud.control.manger.task.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.drore.cloud.control.manger.common.base.domain.BaseEntity;
-import com.drore.cloud.control.manger.common.base.utils.DateUtils;
+import com.drore.cloud.control.manger.common.base.utils.ControlDateUtils;
 import com.drore.cloud.control.manger.task.constant.StatusType;
 import com.drore.cloud.control.manger.task.constant.TaskConstant;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -50,32 +49,32 @@ public class ScheduleTaskDetailEntity extends BaseEntity {
     /**
      * 开始时间 默认当前时间
      */
-    @JSONField(name = "start_time", format = DateUtils.YMD_DASH_WITH_TIME)
+    @JSONField(name = "start_time", format = ControlDateUtils.YMD_DASH_WITH_TIME)
     @JsonProperty(value = "start_time")
     @ApiModelProperty(value = "任务开始时间", notes = "默认当前时间", example = "2017-08-08 08:08:08")
-    private Date startTime = Calendar.getInstance().getTime();
+    private LocalDateTime startTime = LocalDateTime.now();
 
     /**
      * 结束时间 默认到2099年结束
      */
-    @JSONField(name = "end_time", format = DateUtils.YMD_DASH_WITH_TIME)
+    @JSONField(name = "end_time", format = ControlDateUtils.YMD_DASH_WITH_TIME)
     @JsonProperty(value = "end_time")
     @ApiModelProperty(value = "任务结束时间", notes = "默认2099-01-01 00:00:00", example = "2099-01-01 00:00:00")
-    private Date endTime = TaskConstant.DEFAULT_END_TIME;
+    private LocalDateTime endTime = TaskConstant.DEFAULT_END_TIME;
 
     /**
      * 触发url
      */
     @JSONField(name = "trigger_url")
     @JsonProperty(value = "trigger_url")
-    @ApiModelProperty(value = "任务触发地址",  example = "http://www.baidu.com")
+    @ApiModelProperty(value = "任务触发地址", example = "http://www.baidu.com")
     private String triggerUrl;
 
     /**
      * 触发参数
      */
-    @ApiModelProperty(value = "任务触发参数",notes = "Map<String,Object>格式")
-    private Map<String,Object> param;
+    @ApiModelProperty(value = "任务触发参数", notes = "Map<String,Object>格式")
+    private Map<String, Object> param;
 
     /**
      * 任务状态

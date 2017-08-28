@@ -42,6 +42,7 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+      - "15674:15674"
     volumes:
       - /mnt/rabbitmq/:/var/rabbitmq/lib
     environment:

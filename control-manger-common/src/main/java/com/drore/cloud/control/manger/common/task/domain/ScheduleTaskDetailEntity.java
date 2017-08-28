@@ -2,7 +2,7 @@ package com.drore.cloud.control.manger.common.task.domain;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 
 /**
@@ -34,12 +34,12 @@ public class ScheduleTaskDetailEntity {
     /**
      * 开始时间
      */
-    private Date startTime;
+    private LocalDate startTime;
 
     /**
      * 结束时间
      */
-    private Date endTime;
+    private LocalDate endTime;
 
     /**
      * 触发url

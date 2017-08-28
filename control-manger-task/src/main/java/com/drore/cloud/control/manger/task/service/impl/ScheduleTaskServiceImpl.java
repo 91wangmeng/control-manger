@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,7 +36,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @PostConstruct
     public void init() {
-        List<ScheduleTaskDetailEntity> allTask = detailRepository.findAllByStatusAndEndTimeAfter(StatusType.RUNNING.getValue(), new Date());
+        List<ScheduleTaskDetailEntity> allTask = detailRepository.findAllByStatusAndEndTimeAfter(StatusType.RUNNING.getValue(), LocalDateTime.now());
         allTask.stream()
                 .forEach(taskDetailEntity -> {
                     CronTrigger cronTrigger = ScheduleUtils.getCronTrigger(scheduler, taskDetailEntity.getId());
@@ -134,7 +134,7 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @Override
     public Result clearOverDue() {
-        List<ScheduleTaskDetailEntity> allByEndTimeBefore = detailRepository.findAllByEndTimeBefore(new Date());
+        List<ScheduleTaskDetailEntity> allByEndTimeBefore = detailRepository.findAllByEndTimeBefore(LocalDateTime.now());
         allByEndTimeBefore
                 .stream()
                 .forEach(taskDetailEntity -> taskDetailEntity.setStatus(StatusType.OVERDUE.getValue()));

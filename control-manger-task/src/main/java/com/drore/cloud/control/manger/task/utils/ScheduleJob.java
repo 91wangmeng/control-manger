@@ -2,7 +2,7 @@ package com.drore.cloud.control.manger.task.utils;
 
 
 import com.alibaba.fastjson.JSON;
-import com.drore.cloud.control.manger.common.base.utils.SpringContextUtils;
+import com.drore.cloud.control.manger.common.base.utils.ControlSpringContextUtils;
 import com.drore.cloud.control.manger.task.constant.TaskConstant;
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskDetailEntity;
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskLogEntity;
@@ -37,7 +37,7 @@ public class ScheduleJob extends QuartzJobBean {
         ScheduleTaskDetailEntity scheduleJob = JSON.parseObject(jsonJob, ScheduleTaskDetailEntity.class);
 
         //获取spring bean
-        ScheduleTaskLogService scheduleJobLogService = SpringContextUtils.getBean("scheduleTaskLogService", ScheduleTaskLogServiceImpl.class);
+        ScheduleTaskLogService scheduleJobLogService = ControlSpringContextUtils.getBean("scheduleTaskLogService", ScheduleTaskLogServiceImpl.class);
         //数据库保存执行记录
         ScheduleTaskLogEntity log = new ScheduleTaskLogEntity();
         String taskName = scheduleJob.getTaskName();

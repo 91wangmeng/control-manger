@@ -1,6 +1,6 @@
 package com.drore.cloud.control.manger;
 
-import org.apache.commons.lang.time.DateFormatUtils;
+import com.drore.cloud.control.manger.common.base.utils.ControlDateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 卓锐科技有限公司
@@ -45,7 +45,7 @@ public class ControlMangerWebApplication {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        LOGGER.debug("系统启动时间:{}", DateFormatUtils.format(new Date(), DateFormatUtils.ISO_DATETIME_FORMAT.getPattern()));
+        LOGGER.debug("系统启动时间:{}", ControlDateUtils.format(LocalDateTime.now()));
         SpringApplication.run(ControlMangerWebApplication.class);
     }
 }

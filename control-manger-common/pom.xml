@@ -23,5 +23,10 @@
             <artifactId>httpclient</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.drore.cloud</groupId>
+            <artifactId>cloud-sdk</artifactId>
+            <version>0.5.0</version>
+        </dependency>
     </dependencies>
 </project>

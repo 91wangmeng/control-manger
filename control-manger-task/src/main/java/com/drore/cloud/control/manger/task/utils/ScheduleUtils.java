@@ -2,6 +2,7 @@ package com.drore.cloud.control.manger.task.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.drore.cloud.control.manger.common.base.exception.CMException;
+import com.drore.cloud.control.manger.common.base.utils.ControlDateUtils;
 import com.drore.cloud.control.manger.task.constant.StatusType;
 import com.drore.cloud.control.manger.task.constant.TaskConstant;
 import com.drore.cloud.control.manger.task.domain.ScheduleTaskDetailEntity;
@@ -70,8 +71,8 @@ public class ScheduleUtils {
             CronTrigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity(getTriggerKey(taskDetailEntity.getId()))
                     .withSchedule(scheduleBuilder)
-                    .startAt(taskDetailEntity.getStartTime())
-                    .endAt(taskDetailEntity.getEndTime())
+                    .startAt(ControlDateUtils.Java8ToDate(taskDetailEntity.getStartTime()))
+                    .endAt(ControlDateUtils.Java8ToDate(taskDetailEntity.getEndTime()))
                     .build();
             //放入参数，运行时的方法可以获取
             jobDetail.getJobDataMap().put(TaskConstant.SCHEDULE_TASK_KEY, JSON.toJSONString(taskDetailEntity));
@@ -108,8 +109,8 @@ public class ScheduleUtils {
             }
             //按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder()
-                    .startAt(taskDetailEntity.getStartTime())
-                    .endAt(taskDetailEntity.getEndTime())
+                    .startAt(ControlDateUtils.Java8ToDate(taskDetailEntity.getStartTime()))
+                    .endAt(ControlDateUtils.Java8ToDate(taskDetailEntity.getEndTime()))
                     .withIdentity(triggerKey)
                     .withSchedule(scheduleBuilder)
                     .build();

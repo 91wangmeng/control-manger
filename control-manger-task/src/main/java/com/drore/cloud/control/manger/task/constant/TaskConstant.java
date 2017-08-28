@@ -1,7 +1,6 @@
 package com.drore.cloud.control.manger.task.constant;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 浙江卓锐科技股份有限公司 版权所有 © Copyright 2017<br/>
@@ -35,12 +34,10 @@ public class TaskConstant {
      * The constant SUCCESS_DELETE.
      */
     public static final String SUCCESS_DELETE = "删除任务成功";
-    private static Date time;
+    private static LocalDateTime time;
 
     static {
-        Calendar instance = Calendar.getInstance();
-        instance.set(2099, Calendar.JANUARY, 1);
-        time = instance.getTime();
+        time = LocalDateTime.of(2099, 12, 31, 23, 59, 59);
     }
 
     /**
@@ -60,6 +57,6 @@ public class TaskConstant {
     /**
      * The constant DEFAULT_END_TIME.
      */
-    public static final Date DEFAULT_END_TIME = time;
+    public static final LocalDateTime DEFAULT_END_TIME = time;
 
 }
