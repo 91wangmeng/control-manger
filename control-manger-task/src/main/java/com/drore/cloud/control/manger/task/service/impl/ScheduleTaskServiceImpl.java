@@ -1,6 +1,7 @@
 package com.drore.cloud.control.manger.task.service.impl;
 
 import com.drore.cloud.control.manger.common.base.domain.vo.Result;
+import com.drore.cloud.control.manger.common.base.exception.CMException;
 import com.drore.cloud.control.manger.task.constant.StatusType;
 import com.drore.cloud.control.manger.task.constant.TaskConstant;
 import com.drore.cloud.control.manger.task.dao.ScheduleTaskDetailRepository;
@@ -71,6 +72,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     @Override
     public Result pauseTask(String taskId) {
         ScheduleUtils.pauseJob(scheduler, taskId);
+        ScheduleTaskDetailEntity one = detailRepository.findOne(taskId);
+        one.setStatus(StatusType.PAUSE.getValue());
+        detailRepository.save(one);
         return Result.success(TaskConstant.SUCCESS_PAUSE);
     }
 
@@ -83,6 +87,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     @Override
     public Result resumeTask(String taskId) {
         ScheduleUtils.resumeJob(scheduler, taskId);
+        ScheduleTaskDetailEntity one = detailRepository.findOne(taskId);
+        one.setStatus(StatusType.RUNNING.getValue());
+        detailRepository.save(one);
         return Result.success(TaskConstant.SUCCESS_RESUME);
     }
 
@@ -94,6 +101,9 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
      */
     @Override
     public Result addTask(ScheduleTaskDetailEntity taskDetailEntity) {
+        if (taskDetailEntity.getEndTime().isBefore(LocalDateTime.now())) {
+            throw new CMException("任务结束时间必须晚于当前时间");
+        }
         taskDetailEntity.setStatus(StatusType.RUNNING.getValue());
         taskDetailEntity.setCreateTime(Calendar.getInstance().getTimeInMillis());
         taskDetailEntity = detailRepository.save(taskDetailEntity);

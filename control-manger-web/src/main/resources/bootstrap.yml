@@ -11,7 +11,7 @@ spring:
     mongodb:
       port: 27017
       database: ${spring.application.name}
-      host: mongodb
+      host: @mongodb@
 ##  eureka配置
 eureka:
   client:
