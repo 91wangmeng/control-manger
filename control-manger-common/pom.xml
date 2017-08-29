@@ -11,7 +11,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>control-manger-common</artifactId>
-
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>drore Team nexus</name>
+            <url>http://192.168.11.110:8081/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.aspectj</groupId>
