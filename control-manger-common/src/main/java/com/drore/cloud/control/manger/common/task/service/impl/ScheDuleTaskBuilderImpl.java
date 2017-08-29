@@ -3,7 +3,7 @@ package com.drore.cloud.control.manger.common.task.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.drore.cloud.control.manger.common.base.domain.vo.Result;
-import com.drore.cloud.control.manger.common.http.utils.HttpRequestUtils;
+import com.drore.cloud.control.manger.common.base.utils.ControlHttpUtils;
 import com.drore.cloud.control.manger.common.task.domain.ScheduleTaskDetailEntity;
 import com.drore.cloud.control.manger.common.task.service.ScheDuleTaskBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -79,14 +79,14 @@ public class ScheDuleTaskBuilderImpl implements ScheDuleTaskBuilder {
 
     private Result doPostTaskRequest(String describe, String url, ScheduleTaskDetailEntity taskDetailEntity) {
         JSONObject params = JSON.parseObject(taskDetailEntity.toString());
-        String result = HttpRequestUtils.postJson(describe, control_manger_ip + url, params);
+        String result = ControlHttpUtils.postJson(describe, control_manger_ip + url, params);
         return JSON.parseObject(result, Result.class);
     }
 
     private Result doGetTaskRequest(String describe, String url, String taskId) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("id", taskId);
-        String result = HttpRequestUtils.getWithParam(describe, control_manger_ip + url, params);
+        String result = ControlHttpUtils.getWithParam(describe, control_manger_ip + url, params);
         return JSON.parseObject(result, Result.class);
     }
 }

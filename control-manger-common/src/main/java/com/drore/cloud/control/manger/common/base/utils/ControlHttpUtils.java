@@ -1,4 +1,4 @@
-package com.drore.cloud.control.manger.common.http.utils;
+package com.drore.cloud.control.manger.common.base.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.drore.cloud.control.manger.common.log.entity.HttpRequestLogEntity;
@@ -42,8 +42,8 @@ import java.util.Map;
  *
  * @author wmm
  */
-public class HttpRequestUtils {
-    private static Logger LOGGER = LoggerFactory.getLogger(HttpRequestUtils.class);
+public class ControlHttpUtils {
+    private static Logger LOGGER = LoggerFactory.getLogger(ControlHttpUtils.class);
     private final static String UTF8 = "UTF-8";
     /**
      * The constant REQUEST_TIMEOUT.
@@ -144,7 +144,7 @@ public class HttpRequestUtils {
 
             return result;
         } catch (UnsupportedEncodingException e) {
-            LOGGER.error("[HttpRequestUtils][post][Unsupported Encoding Exception]", e);
+            LOGGER.error("[ControlHttpUtils][post][Unsupported Encoding Exception]", e);
         }
         return null;
     }
@@ -290,7 +290,7 @@ public class HttpRequestUtils {
             httpRequestLogEntity.setSuccess(false);
             httpRequestLogEntity.setFailCause(e.getMessage());
             LOGGER.error(
-                    "[HttpRequestUtils][invoke][method:" + request.getMethod() + " URI:" + request.getURI() + "] is request exception", e);
+                    "[ControlHttpUtils][invoke][method:" + request.getMethod() + " URI:" + request.getURI() + "] is request exception", e);
         } finally {
 
             if (response != null) {
@@ -299,7 +299,7 @@ public class HttpRequestUtils {
 
                 } catch (IOException e) {
                     LOGGER.error(
-                            "[HttpRequestUtils][invoke][method:" + request.getMethod() + " URI:" + request.getURI() + "] is closed exception",
+                            "[ControlHttpUtils][invoke][method:" + request.getMethod() + " URI:" + request.getURI() + "] is closed exception",
                             e);
                 }
             }
@@ -346,7 +346,7 @@ public class HttpRequestUtils {
         HashMap<String, Object> stringObjectHashMap = new HashMap<>();
         stringObjectHashMap.put("a", "a");
         stringObjectHashMap.put("b", "b");
-        String test = HttpRequestUtils.get("打开百度", "http://www.baidu.com");
+        String test = ControlHttpUtils.get("打开百度", "http://www.baidu.com");
         System.out.println(test);
     }
 

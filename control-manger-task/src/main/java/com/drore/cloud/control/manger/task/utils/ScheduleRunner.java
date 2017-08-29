@@ -1,7 +1,7 @@
 package com.drore.cloud.control.manger.task.utils;
 
 import com.drore.cloud.control.manger.common.base.exception.CMException;
-import com.drore.cloud.control.manger.common.http.utils.HttpRequestUtils;
+import com.drore.cloud.control.manger.common.base.utils.ControlHttpUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;
@@ -45,9 +45,9 @@ public class ScheduleRunner {
         String result;
         try {
             if (StringUtils.isEmpty(params)) {
-                result = HttpRequestUtils.get(taskName, triggerUrl);
+                result = ControlHttpUtils.get(taskName, triggerUrl);
             } else {
-                result = HttpRequestUtils.postJson(taskName, triggerUrl, params);
+                result = ControlHttpUtils.postJson(taskName, triggerUrl, params);
             }
         } catch (Exception e) {
             throw new CMException("执行定时任务失败", e);
