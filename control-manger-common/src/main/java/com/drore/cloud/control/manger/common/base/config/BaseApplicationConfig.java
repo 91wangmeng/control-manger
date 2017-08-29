@@ -21,7 +21,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  *
  * @author wmm
  */
-//@Configuration
+@Configuration
 public class BaseApplicationConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(BaseApplicationConfig.class);
 

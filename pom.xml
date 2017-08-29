@@ -27,40 +27,6 @@
     </parent>
 
 
-    <profiles>
-        <profile>
-            <properties>
-                <ip>192.168.137.130</ip>
-                <mongodb>mongodb</mongodb>
-                <redis>redis</redis>
-                <rabbitmq>rabbitmq</rabbitmq>
-            </properties>
-            <activation>
-                <os>
-                    <family>unix</family>
-                </os>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <id>work</id>
-        </profile>
-        <profile>
-            <properties>
-                <ip>192.168.137.130</ip>
-                <mongodb>${ip}</mongodb>
-                <redis>${ip}</redis>
-                <rabbitmq>${ip}</rabbitmq>
-            </properties>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <id>develop</id>
-        </profile>
-    </profiles>
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
