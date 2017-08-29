@@ -18,7 +18,38 @@
 
     <name>control-manger</name>
     <description>管控后台管理</description>
-
+    <profiles>
+        <profile>
+            <properties>
+                <ip>192.168.11.130</ip>
+                <mongodb>mongodb</mongodb>
+                <redis>redis</redis>
+                <rabbitmq>rabbitmq</rabbitmq>
+            </properties>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>work</id>
+        </profile>
+        <profile>
+            <properties>
+                <ip>192.168.11.130</ip>
+                <mongodb>${ip}</mongodb>
+                <redis>${ip}</redis>
+                <rabbitmq>${ip}</rabbitmq>
+            </properties>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <id>develop</id>
+        </profile>
+    </profiles>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

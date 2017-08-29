@@ -2,6 +2,9 @@ package com.drore.cloud.control.manger.common.base.business;
 
 import com.drore.cloud.control.manger.common.base.exception.CMException;
 import com.drore.cloud.sdk.builder.UcBuilder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -16,6 +19,7 @@ import java.util.Optional;
  * @author wmm
  */
 @Component
+@ConditionalOnExpression("'${spring.application.name}'!='control-manger'")
 public class TokenUtils {
     private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
     @Resource

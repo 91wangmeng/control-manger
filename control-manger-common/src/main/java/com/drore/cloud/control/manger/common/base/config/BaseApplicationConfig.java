@@ -9,6 +9,7 @@ import com.drore.cloud.sdk.client.CloudQueryRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -22,6 +23,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @author wmm
  */
 @Configuration
+@ConditionalOnExpression("'${spring.application.name}'!='control-manger'")
 public class BaseApplicationConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(BaseApplicationConfig.class);
 
