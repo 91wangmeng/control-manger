@@ -22,8 +22,8 @@ import java.util.List;
 @Component
 public class RedisBuilderImpl implements RedisBuilder {
 
-    @Value("${scenic.env}")
-    private String scenic_env;
+    @Value("${scenic.name}")
+    private String scenic_name;
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
@@ -34,7 +34,7 @@ public class RedisBuilderImpl implements RedisBuilder {
      * @return
      */
     private  String getKey(String key) {
-        return scenic_env +"_"+ key;
+        return scenic_name +"_"+ key;
     }
     @Override
     public void lPush(String key, Object value) {

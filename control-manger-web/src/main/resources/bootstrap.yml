@@ -12,6 +12,9 @@ spring:
       port: 27017
       database: ${spring.application.name}
       host: @mongodb@
+  cloud:
+    config:
+      enabled: false
 ##  eureka配置
 eureka:
   server:
@@ -20,7 +23,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: false
     service-url:
-       defaultZone:   http://localhost:${server.port}/eureka/
+       defaultZone:   http://@ip@:${server.port}/eureka/
 ##  日志
 logging:
   level:
