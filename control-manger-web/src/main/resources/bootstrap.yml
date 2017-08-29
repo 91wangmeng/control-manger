@@ -14,6 +14,8 @@ spring:
       host: @mongodb@
 ##  eureka配置
 eureka:
+  server:
+    enable-self-preservation: false
   client:
     register-with-eureka: true
     fetch-registry: false
@@ -31,3 +33,6 @@ logging:
 management:
   security:
     enabled: false
+## 所属景区
+scenic:
+    name: ${spring.application.name}
