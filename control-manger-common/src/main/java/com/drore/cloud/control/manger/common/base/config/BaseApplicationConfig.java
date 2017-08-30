@@ -27,8 +27,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 public class BaseApplicationConfig {
     private static Logger LOGGER = LoggerFactory.getLogger(BaseApplicationConfig.class);
 
-    @Value("${control.url}")
-    private String control_url;
+    @Value("${metadata.url}")
+    private String metadata_url;
     @Value("${control.appId}")
     private String control_appId;
     @Value("${control.appSecret}")
@@ -68,7 +68,7 @@ public class BaseApplicationConfig {
      */
     @Bean
     public CloudBasicConnection getBasicConnection() {
-        return new CloudBasicConnection(control_url, 80, control_appId, control_appSecret);
+        return new CloudBasicConnection(metadata_url, 80, control_appId, control_appSecret);
 
     }
 
