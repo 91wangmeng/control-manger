@@ -45,6 +45,7 @@ public class ControlMangerWebApplication {
      * @param args the input arguments
      */
     public static void main(String[] args) {
+
         LOGGER.debug("系统启动时间:{}", ControlDateUtils.format(LocalDateTime.now()));
         SpringApplication.run(ControlMangerWebApplication.class);
     }
