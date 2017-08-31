@@ -1,8 +1,6 @@
 package com.drore.cloud.control.manger.common.base.business.gis;
 
-import com.drore.cloud.control.manger.common.base.domain.vo.LabelInfo;
-import com.drore.cloud.control.manger.common.base.domain.vo.LabelType;
-import com.drore.cloud.control.manger.common.base.domain.vo.Point;
+import com.drore.cloud.control.manger.common.base.business.gis.domain.*;
 
 import java.util.List;
 
@@ -15,6 +13,20 @@ import java.util.List;
  */
 public interface GisBuilder {
     /**
+     * Gets tent info. 获取租户信息
+     *
+     * @return the tent info
+     */
+    TenantConfig getTentInfo();
+
+    /**
+     * Gets all maps. 获取所有地图信息
+     *
+     * @return the all maps
+     */
+    List<MapInfo> getAllMaps();
+
+    /**
      * Gets label type. 获取所有标签类型
      *
      * @return the label type
@@ -23,11 +35,12 @@ public interface GisBuilder {
 
 
     /**
-     * Gets all labels. 获取景区所有标签
+     * Gets all labels by map id. 根据地图编号获取所有标签
      *
-     * @return the all labels
+     * @param mapId the map id
+     * @return the all labels by map id
      */
-    List<LabelInfo> getAllLabels();
+    List<LabelInfo> getAllLabelsByMapId(String mapId);
 
     /**
      * Gets labels by type and distance. 获取指定范围内指定类型的标签列表
@@ -45,7 +58,7 @@ public interface GisBuilder {
      * @param subTypes the sub types
      * @return the labels by type and map id
      */
-    List<LabelInfo> getLabelsByTypeAndMapId(String mapId, String... subTypes);
+    List<List<LabelInfo>> getLabelsByTypeAndMapId(String mapId, String... subTypes);
 
 
     /**
@@ -71,6 +84,6 @@ public interface GisBuilder {
      * @param y the y
      * @return the map id by point
      */
-    String getMapIdByPoint(double x,double y);
+    String getMapIdByPoint(double x, double y);
 
 }
