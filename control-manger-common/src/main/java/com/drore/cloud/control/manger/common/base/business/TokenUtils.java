@@ -2,9 +2,8 @@ package com.drore.cloud.control.manger.common.base.business;
 
 import com.drore.cloud.control.manger.common.base.exception.CMException;
 import com.drore.cloud.sdk.builder.UcBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -22,8 +21,12 @@ import java.util.Optional;
 @ConditionalOnExpression("'${spring.application.name}'!='control-manger'")
 public class TokenUtils {
     private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
+
+    @Value("${rsa_public_key}")
+    private String publicKey;
     @Resource
     private UcBuilder ucBuilder;
+
 
     /**
      * Gets token. 无法从请求路径上获取token时使用该方法
@@ -33,7 +36,7 @@ public class TokenUtils {
      * @return the token
      */
     public String getToken(String userName, String password) {
-        return ucBuilder.login(userName, password).getToken();
+        return ucBuilder.loginTwoByKey(userName, password,publicKey.replace(" ","\r")).getToken();
     }
 
     /**

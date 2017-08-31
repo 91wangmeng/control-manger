@@ -1,26 +1,26 @@
 version: "2.0"
 services:
-  teamcity-server:
-    image: jetbrains/teamcity-server
-    container_name: teamcity-server
-    volumes:
-      - /mnt/teamcity_server:/data/teamcity_server/datadir
-      - /mnt/teamcity_server/logs:/opt/teamcity/logs
-    ports:
-      - "8111:8111"
-    expose:
-      - "8111"
-  teamcity-agent:
-    image: jetbrains/teamcity-minimal-agent
-    environment:
-      - SERVER_URL=teamcity-server:8111
-    volumes:
-      - /mnt/teamcity_agent:/data/teamcity_agent/conf
-    container_name: teamcity-agent
-    links:
-      - teamcity-server
-    depends_on:
-      - teamcity-server
+#  teamcity-server:
+#    image: jetbrains/teamcity-server
+#    container_name: teamcity-server
+#    volumes:
+#      - /mnt/wmm/teamcity_server:/data/teamcity_server/datadir
+#      - /mnt/wmm/teamcity_server/logs:/opt/teamcity/logs
+#    ports:
+#      - "8111:8111"
+#    expose:
+#      - "8111"
+#  teamcity-agent:
+#    image: jetbrains/teamcity-minimal-agent
+#    environment:
+#      - SERVER_URL=teamcity-server:8111
+#    volumes:
+#      - /mnt/wmm/teamcity_agent:/data/teamcity_agent/conf
+#    container_name: teamcity-agent
+#    links:
+#      - teamcity-server
+#    depends_on:
+#      - teamcity-server
   mongodb:
     image: mongo:latest
     expose:
@@ -28,13 +28,13 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /mnt/mongodb/:/data/db
+      - /mnt/wmm/mongodb/:/data/db
   redis:
     image: redis:latest
     expose:
       - "6379"
     volumes:
-      - /mnt/redis/:/data
+      - /mnt/wmm/redis/:/data
     ports:
       - "6379:6379"
   rabbitmq:
@@ -44,7 +44,7 @@ services:
       - "15672:15672"
       - "15674:15674"
     volumes:
-      - /mnt/rabbitmq/:/var/rabbitmq/lib
+      - /mnt/wmm/rabbitmq/:/var/rabbitmq/lib
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin

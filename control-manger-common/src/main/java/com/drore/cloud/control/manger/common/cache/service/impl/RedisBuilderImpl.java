@@ -30,12 +30,14 @@ public class RedisBuilderImpl implements RedisBuilder {
 
     /**
      * 为了区分缓存所属景区,所有key统一增加景区前缀
+     *
      * @param key
      * @return
      */
-    private  String getKey(String key) {
-        return scenic_name +"_"+ key;
+    private String getKey(String key) {
+        return scenic_name + "_" + key;
     }
+
     @Override
     public void lPush(String key, Object value) {
         redisTemplate.execute((RedisCallback<Long>) connection ->
@@ -75,5 +77,15 @@ public class RedisBuilderImpl implements RedisBuilder {
     public Object get(String key) {
         return redisTemplate.execute((RedisCallback<Object>) connection ->
                 new FastJsonRedisSerializer().deserialize(connection.get(getKey(key).getBytes())));
+    }
+
+    @Override
+    public boolean exitKey(String key) {
+        return redisTemplate.execute((RedisCallback<Boolean>) connection -> connection.exists(getKey(key).getBytes()));
+    }
+
+    @Override
+    public Long delKey(String key) {
+        return redisTemplate.execute((RedisCallback<Long>) connection -> connection.del(getKey(key).getBytes()));
     }
 }

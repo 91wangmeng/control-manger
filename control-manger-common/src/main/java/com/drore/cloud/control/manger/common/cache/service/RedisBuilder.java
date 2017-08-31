@@ -60,4 +60,8 @@ public interface RedisBuilder {
      * @return the object
      */
     Object get(String key);
+
+    boolean exitKey(String key);
+
+    Long delKey(String key);
 }
