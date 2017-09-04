@@ -4,6 +4,7 @@ import com.drore.cloud.control.manger.common.base.exception.CMException;
 import com.drore.cloud.sdk.builder.UcBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import java.util.Optional;
  * @author wmm
  */
 @Component
+@RefreshScope
 @ConditionalOnExpression("'${spring.application.name}'!='control-manger'")
 public class TokenUtils {
     private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
@@ -36,7 +38,7 @@ public class TokenUtils {
      * @return the token
      */
     public String getToken(String userName, String password) {
-        return ucBuilder.loginTwoByKey(userName, password,publicKey.replace(" ","\r")).getToken();
+        return ucBuilder.loginTwoByKey(userName, password, publicKey.replace(" ", "\r")).getToken();
     }
 
     /**

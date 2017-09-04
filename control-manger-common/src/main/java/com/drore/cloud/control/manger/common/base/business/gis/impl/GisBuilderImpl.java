@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -32,6 +33,7 @@ import static java.util.stream.Collectors.groupingBy;
  * 作者: <a href="6492178@gmail.com">汪萌萌</a>
  */
 @Component
+@RefreshScope
 @ConditionalOnExpression("'${spring.application.name}'!='control-manger'")
 public class GisBuilderImpl implements GisBuilder {
     private static Logger LOGGER = LoggerFactory.getLogger(GisBuilderImpl.class);
