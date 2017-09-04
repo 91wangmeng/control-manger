@@ -62,7 +62,7 @@ public class ServerInvokeAspect {
                 }
                 ServerInvokeLogEntity serverInvokeLogEntity = null;
                 try {
-                    serverInvokeLogEntity = LinkedBlockingQueueUtils.takeServerInvoke();
+                    serverInvokeLogEntity = LinkedBlockingQueueUtils.pollServerInvoke();
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -73,7 +73,7 @@ public class ServerInvokeAspect {
                 }
                 HttpRequestLogEntity httpRequestLogEntity = null;
                 try {
-                    httpRequestLogEntity = LinkedBlockingQueueUtils.takeHttpRequest();
+                    httpRequestLogEntity = LinkedBlockingQueueUtils.pollHttpRequest();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

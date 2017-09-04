@@ -44,8 +44,8 @@ public class LinkedBlockingQueueUtils {
      * @return the object
      * @throws InterruptedException the interrupted exception
      */
-    public static ServerInvokeLogEntity takeServerInvoke() throws InterruptedException {
-        return invokeLogEntities.take();
+    public static ServerInvokeLogEntity pollServerInvoke() throws InterruptedException {
+        return invokeLogEntities.poll();
     }
 
     /**
@@ -54,8 +54,8 @@ public class LinkedBlockingQueueUtils {
      * @return the http request log entity
      * @throws InterruptedException the interrupted exception
      */
-    public static HttpRequestLogEntity takeHttpRequest() throws InterruptedException {
-        return httpRequestLogEntities.take();
+    public static HttpRequestLogEntity pollHttpRequest() throws InterruptedException {
+        return httpRequestLogEntities.poll();
     }
 
     /**
@@ -64,6 +64,6 @@ public class LinkedBlockingQueueUtils {
      * @return the boolean
      */
     public static boolean isEmpty() {
-        return invokeLogEntities.isEmpty() || httpRequestLogEntities.isEmpty();
+        return invokeLogEntities.isEmpty() && httpRequestLogEntities.isEmpty();
     }
 }
