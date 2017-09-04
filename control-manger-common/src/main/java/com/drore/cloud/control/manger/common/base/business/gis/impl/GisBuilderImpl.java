@@ -54,6 +54,8 @@ public class GisBuilderImpl implements GisBuilder {
     private String gis_find_by_map_ids_and_subtypes;
     @Value("${gis.get_label_by_distance_and_type}")
     private String gis_get_label_by_distance_and_type;
+    @Value("${gis.get_map_id_by_triggerDevice}")
+    private String gis_get_map_id_by_triggerDevice;
 
     @Resource
     private RedisBuilder redisBuilder;
@@ -85,7 +87,6 @@ public class GisBuilderImpl implements GisBuilder {
             //获取租户地图信息
             Pagination<TenantMapConfig> tenantMapConfigPagination = tenantRunner.queryListByExample(TenantMapConfig.class, TENANT_GIS_MAP, 1, 100);
             if (tenantMapConfigPagination.getCount() > 0) {
-
                 RequestExample req = new RequestExample();
                 RequestExample.Criteria rc = req.create();
                 RequestExample.Param param = req.createParam();
@@ -110,10 +111,7 @@ public class GisBuilderImpl implements GisBuilder {
             labelTypes = (List<LabelType>) redisBuilder.get(LABEL_TAB);
         } else {
             String url = MessageFormat.format(gis_url + gis_find, LABEL_TAB);
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("pageNo", 1);
-            jsonObject.put("pageSize", 100);
-            jsonObject.put("fields", new JSONObject());
+            JSONObject jsonObject = gisParam(1, 100, new JSONObject());
             String allLabelTypesStr = ControlHttpUtils.postJson("获取所有标签类型", url, jsonObject);
 
             if (ControlStringUtils.isNotEmpty(allLabelTypesStr)) {
@@ -131,6 +129,14 @@ public class GisBuilderImpl implements GisBuilder {
     }
 
 
+    private static JSONObject gisParam(int pageNo, int pageSize, JSONObject fields) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageNo", 1);
+        jsonObject.put("pageSize", 5000);
+        jsonObject.put("fields", fields);
+        return jsonObject;
+    }
+
     @Override
     public List<LabelInfo> getAllLabelsByMapId(String mapId) {
         List<LabelInfo> allLabels = Collections.EMPTY_LIST;
@@ -140,13 +146,11 @@ public class GisBuilderImpl implements GisBuilder {
             List<LabelType> allLabelTypes = JSON.parseArray(JSON.toJSONString(getAllLabelTypes()), LabelType.class);
             String subTypes = allLabelTypes.parallelStream().map(labelType -> labelType.getId()).reduce((s, s2) -> s + "," + s2).get();
             String url = MessageFormat.format(gis_url + gis_find_by_map_ids_and_subtypes, LABEL_INFO);
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("pageNo", 1);
-            jsonObject.put("pageSize", 10000);
             JSONObject fields = new JSONObject();
             fields.put("subtypes", subTypes);
             fields.put("mapId", mapId);
-            jsonObject.put("fields", fields);
+            JSONObject jsonObject = gisParam(1, 5000, fields);
+
             String allLabelsStr = ControlHttpUtils.postJson("获取所有标签信息", url, jsonObject);
             if (ControlStringUtils.isNotEmpty(allLabelsStr)) {
                 Pagination<LabelInfo> pagination = JSONObject.parseObject(allLabelsStr, new TypeReference<Pagination<LabelInfo>>() {
@@ -165,8 +169,23 @@ public class GisBuilderImpl implements GisBuilder {
     }
 
     @Override
-    public List<LabelInfo> getLabelsByTypeAndDistance(int distance, String... subTypes) {
-        return null;
+    public List<LabelInfo> getLabelsByTypeAndDistance(double x, double y, int distance, String... subTypes) {
+        String url = gis_url + gis_get_label_by_distance_and_type;
+        String labelType = Arrays.stream(subTypes).reduce((s, s2) -> s + "," + s2).get();
+        JSONObject param = new JSONObject();
+        param.put("x", x);
+        param.put("y", y);
+        param.put("distance", distance);
+        param.put("labelType", labelType);
+        String labels = ControlHttpUtils.postJson("根据距离和类型获取点位周边标签", url, param);
+
+        Pagination<LabelInfo> pagination;
+        if (ControlStringUtils.isNotEmpty(labels)) {
+            pagination = JSONObject.parseObject(labels, new TypeReference<Pagination<LabelInfo>>() {
+            });
+            return pagination.getData();
+        }
+        return Collections.EMPTY_LIST;
     }
 
     @Override
@@ -187,9 +206,13 @@ public class GisBuilderImpl implements GisBuilder {
     }
 
     @Override
-    public LabelInfo getLabelByDeviceInfo(String deviceInfo) {
-        return null;
+    public LabelInfo getLabelByDeviceInfoAndSubType(String deviceInfo, String subType) {
+        List<LabelInfo> allLabelsByMapId = this.getAllLabelsByMapId("");
+        Optional<LabelInfo> any = allLabelsByMapId.stream().filter(labelInfo -> deviceInfo.equals(labelInfo.getDeviceInfo()) && subType.equals(labelInfo.getSubtype())).findAny();
+        LabelInfo labelInfo = any.orElseThrow(() -> new CMException("地图不存在该点位"));
+        return labelInfo;
     }
+
 
     @Override
     public LabelInfo getRoad(List<Point> points) {

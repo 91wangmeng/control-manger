@@ -49,7 +49,8 @@ public interface GisBuilder {
      * @param subTypes the sub types
      * @return the labels by type and distance
      */
-    List<LabelInfo> getLabelsByTypeAndDistance(int distance, String... subTypes);
+
+    List<LabelInfo> getLabelsByTypeAndDistance(double x, double y, int distance, String... subTypes);
 
     /**
      * Gets labels by type and map id. 根据标签类型和地图编号(可选)获取标签列表
@@ -67,7 +68,8 @@ public interface GisBuilder {
      * @param deviceInfo the device info
      * @return the label by device info
      */
-    LabelInfo getLabelByDeviceInfo(String deviceInfo);
+
+    LabelInfo getLabelByDeviceInfoAndSubType(String deviceInfo, String subType);
 
     /**
      * Gets road. 根据点位获取路线
